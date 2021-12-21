@@ -15,7 +15,6 @@ namespace :socketing do
         p "Inside Task"
         p "#{client}"
         p "#{client.puts}"
-        p "#{client[0]}"
         p "#{client.gets}"
         p "#{client.inspect}"
 
