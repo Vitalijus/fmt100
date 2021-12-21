@@ -34,11 +34,14 @@ namespace :socketing do
         puts "Accepting connection from IP: #{client.peeraddr[2]}"
         puts "Accepting connection from PORT: #{client.peeraddr[1]}"
 
-        t = TCPSocket.new(client.peeraddr[2], client.peeraddr[1])
-        puts "New TCPsocket: #{t}"
-        t.send("\x00")
-        puts t.read
-        t.close
+        r = client.send('\x01'.encode('utf-8'), 0)
+        puts "Encode: #{'\x01'.encode('utf-8')} | #{r}"
+
+        # t = TCPSocket.new(client.peeraddr[2], client.peeraddr[1])
+        # puts "New TCPSocket: #{t}"
+        # t.send("\x00")
+        # puts t.read
+        # t.close
 
         # client.send "\x00", 0
 
