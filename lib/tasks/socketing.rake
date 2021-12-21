@@ -31,12 +31,13 @@ namespace :socketing do
       Thread.start(server.accept) do |client|
         p "Imei"
         puts client.gets
-        puts "Accepting connection from: #{client.peeraddr[2]}"
+        puts "Accepting connection from IP: #{client.peeraddr[2]}"
+        puts "Accepting connection from PORT: #{client.peeraddr[1]}"
 
-        TCPSocket.open(client.peeraddr[2], client.peeraddr[1]) {|s|
-          s.send '\x00', 0
-          p s.read
-        }
+        # TCPSocket.open(client.peeraddr[2], client.peeraddr[1]) {|s|
+        #   s.send '\x00', 0
+        #   p s.read
+        # }
         # puts JSON.parse(client.gets)
 
         # p "Remote address"
