@@ -16,14 +16,14 @@ namespace :socketing do
       Thread.start(server.accept) do |client|
         p "Inside Task"
         p "#{client.gets}"
-        p "#{client.recv(1000).chomp}"
-        p "#{Binascii.b2a_hex(client.recv(1000).chomp)}"
-        p "#{Binascii.b2a_hex(client.recv(1000).chomp).length > 2}"
+        p "#{client.recv(1000)}"
+        p "#{Binascii.b2a_hex(client.gets)}"
+        p "#{Binascii.b2a_hex(client.gets).length > 2}"
 
         # client.puts "Time is #{Time.now}"
         # client.puts "#{client}"
 
-        p 'Close'
+        p "Connection closed"
         client.close
 
         # string = client.recv(1000).chomp # Request Data received at the socket port
