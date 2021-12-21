@@ -13,7 +13,7 @@ namespace :socketing do
 
     host = Rails.env.production? ? "34.215.230.158" : "127.0.0.1"
     port = 65432
-    server = TCPServer.new("127.0.0.1", port) # 0.0.0.0  ???????????????
+    server = TCPServer.new("0.0.0.0", port) # 0.0.0.0  ???????????????
 
     # sock = server.accept
     # p sock.remote_address #=> #<Addrinfo: 127.0.0.1:36504 TCP>
