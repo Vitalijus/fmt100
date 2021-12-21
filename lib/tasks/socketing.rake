@@ -4,6 +4,8 @@ namespace :socketing do
   desc "Start TCP server"
   task start: :environment do
     require 'socket'
+    require 'binascii'
+
     puts "Started TCP Server"
 
     host = Rails.env.production? ? "34.215.230.158" : "127.0.0.1"
@@ -13,15 +15,15 @@ namespace :socketing do
     loop do
       Thread.start(server.accept) do |client|
         p "Inside Task"
-        p "#{client}"
-        p "#{client.puts}"
         p "#{client.gets}"
-        p "#{client.inspect}"
+        p "#{client.recv(1000).chomp}"
+        p "#{Binascii.b2a_hex(client.recv(1000).chomp)}"
+        p "#{Binascii.b2a_hex(client.recv(1000).chomp).length > 2}"
 
         # client.puts "Time is #{Time.now}"
         # client.puts "#{client}"
 
-        p 'Bye'
+        p 'Close'
         client.close
 
         # string = client.recv(1000).chomp # Request Data received at the socket port
