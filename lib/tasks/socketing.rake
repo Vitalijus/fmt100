@@ -14,9 +14,10 @@ namespace :socketing do
       Thread.start(server.accept) do |client|
         p "Inside Task"
         p "Env prod? : #{Rails.env.production?}"
+        p "#{client}"
 
-        client.puts "Time is #{Time.now}"
-        client.puts "#{client}"
+        # client.puts "Time is #{Time.now}"
+        # client.puts "#{client}"
 
         p 'Bye'
         client.close
