@@ -8,7 +8,7 @@ namespace :socketing do
 
     host = Rails.env.production? ? "34.215.230.158" : "127.0.0.1"
     port = 65432
-    server = TCPServer.new("127.0.0.1", port)
+    server = TCPServer.new("0.0.0.0", port)
 
     loop do
       Thread.start(server.accept) do |client|
