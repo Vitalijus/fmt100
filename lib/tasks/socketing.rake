@@ -34,8 +34,13 @@ namespace :socketing do
         puts "Accepting connection from IP: #{client.peeraddr[2]}"
         puts "Accepting connection from PORT: #{client.peeraddr[1]}"
 
-        r = client.send('\x01'.encode('utf-8'), 0)
-        puts "Encode: #{'\x01'.encode('utf-8')} | #{r}"
+        # r = client.send('\x01'.encode('utf-8'), 0)
+        # puts "Encode: #{'\x01'.encode('utf-8')} | #{r}"
+
+        sock = TCPSocket.new(client.peeraddr[2], client.peeraddr[1])
+        sock.write '\x01'.encode('utf-8')
+        puts sock.read(500) # Since the response message has 5 bytes.
+        sock.close
 
         # t = TCPSocket.new(client.peeraddr[2], client.peeraddr[1])
         # puts "New TCPSocket: #{t}"
