@@ -34,10 +34,10 @@ namespace :socketing do
         puts "Accepting connection from IP: #{client.peeraddr[2]}"
         puts "Accepting connection from PORT: #{client.peeraddr[1]}"
 
-        r = client.send("\x01".encode("utf-8"), 0)
+        r = client.send([1].pack("c*"), 0)
         # w = client.write("\x01".encode('utf-8'))
         # p = client.puts('\x01'.encode("utf-8"))
-        puts "Encode: #{"\x01".encode('utf-8')} | Send: #{r}"
+        puts "Encode: #{[1].pack("c*")} | Send: #{r}"
         # puts "Encode: #{"\x01".encode('utf-8')} | Write: #{w}"
         # puts "Encode: #{'\x01'.encode('utf-8')} | Puts: #{p}"
         puts client.gets
