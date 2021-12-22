@@ -35,7 +35,13 @@ namespace :socketing do
         puts "Accepting connection from PORT: #{client.peeraddr[1]}"
 
         r = client.send('\x01'.encode("utf-8"), 0)
-        puts "Encode: #{'\x01'.encode('utf-8')} | #{r}"
+        # w = client.write('\x01'.encode("utf-8"))
+        # p = client.puts('\x01'.encode("utf-8"))
+        puts "Encode: #{'\x01'.encode('utf-8')} | Send: #{r}"
+        # puts "Encode: #{'\x01'.encode('utf-8')} | Write: #{w}"
+        # puts "Encode: #{'\x01'.encode('utf-8')} | Puts: #{p}"
+        puts client.gets
+
         # puts r.is_a?(Integer)
         # puts server.send('\x01', 0)
 
