@@ -13,7 +13,7 @@ namespace :socketing do
 
     host = Rails.env.production? ? "34.215.230.158" : "127.0.0.1"
     port = 65432
-    server = TCPServer.new("127.0.0.1", port) # 0.0.0.0  ???????????????
+    server = TCPServer.new("0.0.0.0", port) # 0.0.0.0  ???????????????
 
     # sock = server.accept
     # p sock.remote_address #=> #<Addrinfo: 127.0.0.1:36504 TCP>
@@ -29,8 +29,7 @@ namespace :socketing do
 
     loop do
       Thread.start(server.accept) do |client|
-        p "Imei"
-        puts client.gets
+        puts "IMEI: #{client.gets}"
         puts "Accepting connection from IP: #{client.peeraddr[2]}"
         puts "Accepting connection from PORT: #{client.peeraddr[1]}"
 
