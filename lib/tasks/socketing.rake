@@ -13,7 +13,7 @@ namespace :socketing do
 
     host = Rails.env.production? ? "34.215.230.158" : "127.0.0.1"
     port = 65432
-    server = TCPServer.new("0.0.0.0", port) # 0.0.0.0  ???????????????
+    server = TCPServer.new("127.0.0.1", port) # 0.0.0.0  ???????????????
 
     # sock = server.accept
     # p sock.remote_address #=> #<Addrinfo: 127.0.0.1:36504 TCP>
@@ -34,11 +34,11 @@ namespace :socketing do
         puts "Accepting connection from IP: #{client.peeraddr[2]}"
         puts "Accepting connection from PORT: #{client.peeraddr[1]}"
 
-        r = client.send("x01".encode("utf-8"), 0)
-        w = client.write("x01".encode('utf-8'))
+        r = client.send([1].pack('C'), 0)
+        # w = client.write("x01".encode('utf-8'))
         # p = client.puts('\x01'.encode("utf-8"))
         puts "Encode: #{"x01".encode("utf-8")} | Send: #{r}"
-        puts "Encode: #{"x01".encode('utf-8')} | Write: #{w}"
+        # puts "Encode: #{"x01".encode('utf-8')} | Write: #{w}"
         # puts "Encode: #{'\x01'.encode('utf-8')} | Puts: #{p}"
         puts client.gets
         puts client.read
