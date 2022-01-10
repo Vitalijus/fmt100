@@ -244,7 +244,7 @@ namespace :socketing do
                       p self.log("Done! Closing Connection")
                       client.close
 
-                      gps_data = decoder.decoder
+                      gps_data = decoder.decode
 
                       gps_data.each do |gps|
                         tracker = Tracker.create(longitude: gps[:gps_data][:longitude], latitude: gps[:gps_data][:latitude])
