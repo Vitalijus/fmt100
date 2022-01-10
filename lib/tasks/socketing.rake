@@ -7,117 +7,260 @@ namespace :socketing do
   desc "Start TCP server"
   task start: :environment do
     require 'socket'
-    require 'binascii'
+    require 'date'
 
-    puts "Started TCP Server"
+    class Decoder
+      def initialize(payload, imei)
+        @payload = payload
+        @imei = imei
+        @precision = 10000000.0
+      end
 
-    host = Rails.env.production? ? "34.215.230.158" : "127.0.0.1"
-    port = 65432
-    # server = TCPServer.new("0.0.0.0", port) # 0.0.0.0  ???????????????
-    server = TCPServer.new("127.0.0.1", port)
+      def number_of_rec
+        @payload[18..19].to_i(16)
+      end
 
-    # sock = server.accept
-    # p sock.remote_address #=> #<Addrinfo: 127.0.0.1:36504 TCP>
+      def number_of_total_rec
+        @payload[-10..-9].to_i(16)
+      end
 
-    # server = TCPServer.open("127.0.0.1", port) {|serv|
-    #   socket = TCPSocket.new("127.0.0.1", port)
-    #   s = serv.accept
-    #   p s.remote_address #=> #<Addrinfo: 127.0.0.1:36504 TCP>
-    # }
+      def avl_data
+        @payload[20..-9]
+      end
 
-    # af, portt, host, addr = server.addr
-    # socket = TCPSocket.new(addr, portt)
+      def timestamp(avl_data, position)
+        timestamp_hex = avl_data[position..position+15]
+        timestamp_decode = timestamp_hex.to_i(16)
+        DateTime.strptime(timestamp_decode.to_s, '%Q').strftime('%FT%T')
+      end
 
-    loop do
-      Thread.start(server.accept) do |client|
-        p "IMEI: #{client.gets}"
-        p "Accepting connection from IP: #{client.peeraddr[2]}"
-        p "Accepting connection from PORT: #{client.peeraddr[1]}"
+      def priority(avl_data, position)
+        priority_hex = avl_data[position..position+1]
+        priority_hex.to_i(16)
+      end
 
-        r = client.send([1].pack('C'), 0)
-        # w = client.write("x01".encode('utf-8'))
-        # p = client.puts('\x01'.encode("utf-8"))
-        puts "Encode: #{"x01".encode("utf-8")} | Send: #{r}"
-        # puts "Encode: #{"x01".encode('utf-8')} | Write: #{w}"
-        # puts "Encode: #{'\x01'.encode('utf-8')} | Puts: #{p}"
-        p client.gets
-        p client.read
-        p client.recv(1000)
+      def longitude(avl_data, position)
+        longitude_hex = avl_data[position..position+7]
+        longitude_decode = longitude_hex.to_i(16)
+        longitude_decode / @precision
+      end
 
-        # puts r.is_a?(Integer)
-        # puts server.send('\x01', 0)
+      def latitude(avl_data, position)
+        latitude_hex = avl_data[position..position+7]
+        latitude_decode = latitude_hex.to_i(16)
+        latitude_decode / @precision
+      end
 
-        # sock = TCPSocket.new(client.peeraddr[2], client.peeraddr[1])
-        # sock.write '\x01'.encode('utf-8')
-        # puts sock.read(500) # Since the response message has 5 bytes.
-        # sock.close
+      def altitude(avl_data, position)
+        altitude_hex = avl_data[position..position+3]
+        altitude_hex.to_i(16)
+      end
 
-        # t = TCPSocket.new(client.peeraddr[2], client.peeraddr[1])
-        # puts "New TCPSocket: #{t}"
-        # t.send("\x00")
-        # puts t.read
-        # t.close
+      def angle(avl_data, position)
+        angle_hex = avl_data[position..position+3]
+        angle_hex.to_i(16)
+      end
 
-        # client.send "\x00", 0
+      def satellites(avl_data, position)
+        satellites_hex = avl_data[position..position+1]
+        satellites_hex.to_i(16)
+      end
 
-        # TCPSocket.open(client.peeraddr[2], client.peeraddr[1]) {|s|
-        #   s.send '\x00', 0
-        #   p s.read
-        # }
-        # puts JSON.parse(client.gets)
+      def speed(avl_data, position)
+        speed_hex = avl_data[position..position+3]
+        speed_hex.to_i(16)
+      end
 
-        # p "Remote address"
-        # puts server.accept.remote_address
+      def io_event_code(avl_data, position)
+        avl_data[position..position + 1].to_i(16)
+      end
 
-        # imei = client.gets
-        # puts Binascii.a2b_hex(imei)
-        # puts imei
+      def number_of_io_elements(avl_data, position)
+        avl_data[position..position + 1].to_i(16)
+      end
 
-        # p "Server addr"
-        # af, port, host, addr = server.addr
-        # puts addr
+      def decode
+        data = []
 
-        # p "Send socket"
-        # TCPSocket.open("localhost", 80) {|s|
-        #   s.send "GET / HTTP/1.0\r\n\r\n", 0
-        #   p s.read
-        # }
-        # puts socket.send('aaa', port)
+        if number_of_rec == number_of_total_rec
+          index = 0
+          position = 0
 
-        # TCPSocket.open("www.ruby-lang.org", 80) {|s|
-        #   p s.remote_address #=> #<Addrinfo: 221.186.184.68:80 TCP>
-        # }
+          while index < number_of_rec
+            # Timestamp
+            timestamp = timestamp(avl_data, position)
+            position += 16
 
-        # TCPSocket.open("localhost", 80) {|s|
-        #   s.send "GET / HTTP/1.0\r\n\r\n", 0
-        #   p s.read
-        # }
-        # puts Binascii.b2a_hex(imei)
+            # Priority
+            priority = priority(avl_data, position)
+            position += 2
 
+            # Longitude
+            longitude = longitude(avl_data, position)
+            position += 8
 
-        # while line = client.gets
-        #   puts line
-        # end
-        # client.puts client.gets.to_s
-        # imei = client.recv(1000).chomp
-        # p "#{client.recv(1000).chomp}"
-        # p "#{Binascii.b2a_hex(imei)}"
-        # p "#{Binascii.b2a_hex(client.gets).length > 2}"
+            # Latitude
+            latitude = latitude(avl_data, position)
+            position += 8
 
-        # client.send("\x01".encode("utf-8"))
+            # Altitude
+            altitude = altitude(avl_data, position)
+            position += 4
 
-        # client.puts "Time is #{Time.now}"
-        # client.puts "#{client}"
-        # 357544374597827
-        # 000000000000003608010000016B40D8EA30010000000000000000000000000000000105021503010101425E0F01F10000601A014E0000000000000000010000C7CF
+            # Angle
+            angle = angle(avl_data, position)
+            position += 4
 
-        p "Connection closed"
-        client.close
+            # Satellites
+            satellites = satellites(avl_data, position)
+            position += 2
 
-        # string = client.recv(1000).chomp # Request Data received at the socket port
-        # result = JSON.parse(string)
-        # client.puts result.to_s
+            # Speed
+            speed = speed(avl_data, position)
+            position += 4
+
+            # SensorsData
+
+            # IO element ID of Event generated
+            io_event_code = avl_data[position..position + 1].to_i(16)
+            position += 2
+
+            number_of_io_elements = avl_data[position..position + 1].to_i(16)
+            position += 2
+
+            # 1 Bit
+            number_of_io1_bit_elements = avl_data[position..position + 1].to_i(16)
+            position += 2
+            io_data = {}
+            number_of_io1_bit_elements.times do
+              io_code = avl_data[position..position + 1].to_i(16)
+              position += 2
+              io_val = avl_data[position..position + 1].to_i(16)
+              position += 2
+              io_data[io_code] = io_val
+            end
+
+            # 2 Bit
+            number_of_io2_bit_elements = avl_data[position..position + 1].to_i(16)
+            position += 2
+
+            number_of_io2_bit_elements.times do
+              io_code = avl_data[position..position + 1].to_i(16)
+              position += 2
+              io_val = avl_data[position..position + 3].to_i(16)
+              position += 4
+              io_data[io_code] = io_val
+            end
+
+            # 4 Bit
+            number_of_io4_bit_elements = avl_data[position..position + 1].to_i(16)
+            position += 2
+
+            number_of_io4_bit_elements.times do
+              io_code = avl_data[position..position + 1].to_i(16)
+              position += 2
+              io_val = avl_data[position..position + 7].to_i(16)
+              position += 8
+              io_data[io_code] = io_val
+            end
+
+            # 8 Bit
+            number_of_io8_bit_elements = avl_data[position..position + 1].to_i(16)
+            position += 2
+
+            number_of_io8_bit_elements.times do
+              io_code = avl_data[position..position + 1].to_i(16)
+              position += 2
+              io_val = avl_data[position..position + 15].to_i(16)
+              position += 16
+              io_data[io_code] = io_val
+            end
+
+            index += 1
+
+            decoded_data = {
+              imei: @imei,
+              number_of_rec: number_of_rec,
+              date_time: timestamp,
+              priority: priority,
+              gps_data: {
+                  longitude: longitude,
+                  latitude: latitude,
+                  altitude: altitude,
+                  angle: angle,
+                  satellites: satellites,
+                  speed: speed,
+              },
+              io_event_code: io_event_code,
+              number_of_io_elements: number_of_io_elements,
+              io_data: io_data
+            }
+
+            data << decoded_data
+          end
+        end
+
+        "Total Records: #{number_of_rec}. Data received: #{data}"
       end
     end
+
+    class ClientThread
+      def initialize(port)
+        @server = TCPServer.open(port)
+        @imei = "unknown"
+      end
+
+      def log(msg)
+        "#{Time.now.utc.strftime('%FT%T')} #{msg}"
+      end
+
+      def run
+        p self.log("Started TCP Server")
+
+        loop do
+          Thread.start(@server.accept) do |client|
+            if client
+              2.times do |index|
+                begin
+                  buff = client.recv(8192)
+                  length, imei = buff.unpack("Sa*")
+                  data = buff.unpack("H*").first
+
+                  if index == 0
+                    @imei = imei
+                    p self.log("Device Authenticated | IMEI: #{@imei}")
+                    client.send([0x01].pack("C"), 0)
+                  elsif index == 1
+                    decoder = Decoder.new(data, @imei)
+                    num_of_rec = decoder.number_of_rec
+
+                    if num_of_rec == 0
+                      client.send([0x00].pack("C"), 0)
+                      client.close
+                    else
+                      p decoder.decode
+                      client.send([num_of_rec].pack("L>"), 0)
+                      p self.log("Done! Closing Connection")
+                      client.close
+                    end
+                  else
+                    client.send([0x00].pack("C"), 0)
+                  end
+
+                rescue SocketError
+                  p self.log("Socket has failed")
+                end
+              end # end of loop twice
+
+            else
+              p self.log('Socket is null')
+            end # if conditional
+          end # end of Thread
+        end # end of infinite loop
+      end # run method
+    end # end of class
+
+    new_thread = ClientThread.new(65432)
+    p new_thread.run
   end
 end
