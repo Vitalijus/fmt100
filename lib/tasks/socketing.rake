@@ -200,7 +200,8 @@ namespace :socketing do
           end
         end
 
-        "Total Records: #{number_of_rec}. Data received: #{data}"
+        # "Total Records: #{number_of_rec}. Data received: #{data}"
+        return data
       end
     end
 
@@ -242,6 +243,12 @@ namespace :socketing do
                       client.send([num_of_rec].pack("L>"), 0)
                       p self.log("Done! Closing Connection")
                       client.close
+
+                      gps_data = decoder.decoder
+
+                      gps_data.each do |gps|
+                        tracker = Tracker.create(longitude: gps[:gps_data][:longitude], latitude: gps[:gps_data][:latitude])
+                      end
                     end
                   else
                     client.send([0x00].pack("C"), 0)

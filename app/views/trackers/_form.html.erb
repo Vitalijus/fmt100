@@ -1,0 +1,47 @@
+<%= form_with(model: tracker) do |form| %>
+  <% if tracker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tracker.errors.count, "error") %> prohibited this tracker from being saved:</h2>
+
+      <ul>
+        <% tracker.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :altitude %>
+    <%= form.text_field :altitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :angle %>
+    <%= form.text_field :angle %>
+  </div>
+
+  <div class="field">
+    <%= form.label :satellites %>
+    <%= form.text_field :satellites %>
+  </div>
+
+  <div class="field">
+    <%= form.label :speed %>
+    <%= form.text_field :speed %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
