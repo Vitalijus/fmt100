@@ -1,3 +1,10 @@
 <div>
   <h3>Home page updated</h3>
+
+  <div>
+
+    <% @distances["rows"].each do |row| %>
+      <%= row["elements"][-1]["distance"]["value"].to_f / 1000 %>km
+    <% end %>
+  </div>
 </div>

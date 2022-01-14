@@ -200,7 +200,6 @@ namespace :socketing do
           end
         end
 
-        # "Total Records: #{number_of_rec}. Data received: #{data}"
         return data
       end
     end
