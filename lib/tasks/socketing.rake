@@ -246,7 +246,9 @@ namespace :socketing do
                       gps_data = decoder.decode
 
                       gps_data.each do |gps|
-                        tracker = Tracker.create(longitude: gps[:gps_data][:longitude], latitude: gps[:gps_data][:latitude])
+                        unless (gps[:gps_data][:longitude] && gps[:gps_data][:latitude]) == 0.0
+                          tracker = Tracker.create(longitude: gps[:gps_data][:longitude], latitude: gps[:gps_data][:latitude])
+                        end
                       end
                     end
                   else
