@@ -6,7 +6,7 @@ module GoogleMaps
     end
 
     def tracker
-      tracker = Tracker.all
+      tracker = Tracker.last(10)
 
       coordinates = []
       tracker.map do |track|
