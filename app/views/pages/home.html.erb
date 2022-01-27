@@ -2,9 +2,11 @@
   <h3>Home page updated</h3>
 
   <div>
-
-    <% @distances["rows"].each do |row| %>
-      <%= row["elements"][-1]["distance"]["value"].to_f / 1000 %>km
+    <% @distance = [] %>
+    <% @distances.each do |distance| %>
+      <% @distance << distance.distance %>
     <% end %>
+
+    <%= (@distance.sum / 1000.0).round(2) %>km
   </div>
 </div>

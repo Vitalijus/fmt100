@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @distances = GoogleMaps::Distance.new.distance
+    @distances = Odometer.all
+    # @distances = GoogleMaps::Distance.new.distance
   end
 end

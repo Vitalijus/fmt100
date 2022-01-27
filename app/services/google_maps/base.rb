@@ -15,18 +15,13 @@ module GoogleMaps
         response = https.request(request)
         result = JSON.parse(response.body)
       rescue
+        # Rollbar notification
         {}
       end
     end
 
     def address(origins, destinations)
-      coordinates = []
-
-      destinations.each do |dest|
-        coordinates << "#{dest[:latitude]},#{dest[:longitude]}"
-      end
-
-      URI("https://maps.googleapis.com/maps/api/distancematrix/json?origins=#{origins[:latitude]}%2C#{origins[:longitude]}&destinations=#{coordinates[1..-1].join("%7C")}&key=AIzaSyC1xYJS1QPq9UQAtFwoMJRNFhDzKKTFPjQ")
+      URI("https://maps.googleapis.com/maps/api/distancematrix/json?origins=#{origins[:latitude]}%2C#{origins[:longitude]}&destinations=#{destinations[:latitude]}%2C#{destinations[:longitude]}&key=#{ENV.fetch("GOOGLE_MAP_API")}")
     end
   end
 end

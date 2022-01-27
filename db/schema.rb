@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_191545) do
+ActiveRecord::Schema.define(version: 2022_01_25_175756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "odometers", force: :cascade do |t|
+    t.string "destination_address"
+    t.string "origin_address"
+    t.integer "distance"
+    t.integer "duration"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "trackers", force: :cascade do |t|
     t.float "latitude"

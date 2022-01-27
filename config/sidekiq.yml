@@ -1,0 +1,9 @@
+# Scheduler jobs
+# '0 * * * * *'   Runs every minute
+# '0 */5 * * * *' Runs when second = 0, every 5 minutes
+
+:schedule:
+  odometer_scheduler_worker:
+    cron: '0 */5 * * * *'
+    class: OdometerSchedulerWorker
+    enabled: true
