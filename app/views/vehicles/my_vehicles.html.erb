@@ -1,0 +1,14 @@
+<div>
+  <% @my_vehicles.each do |my_vehicle| %>
+    <%= my_vehicle.manufacturer %> <%= my_vehicle.model %>
+
+    <% @distance = [] %>
+    <% @odometers = Odometer.where(vehicle_id: my_vehicle.id) %>
+
+    <% @odometers.each do |odometer| %>
+      <% @distance << odometer.distance %>
+    <% end %>
+
+    <%= (@distance.sum / 1000.0).round(2) %>km
+  <% end %>
+</div>

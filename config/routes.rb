@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+
+  resources :vehicles
+  get "my-vehicles", :to => 'vehicles#my_vehicles'
+
+  devise_for :users
   resources :trackers
   root to: "pages#home"
 

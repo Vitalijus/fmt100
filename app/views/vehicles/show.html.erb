@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Manufacturer:</strong>
+  <%= @vehicle.manufacturer %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @vehicle.model %>
+</p>
+
+<p>
+  <strong>Plate number:</strong>
+  <%= @vehicle.plate_number %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @vehicle.category %>
+</p>
+
+<p>
+  <strong>Body style:</strong>
+  <%= @vehicle.body_style %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @vehicle.color %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @vehicle.year %>
+</p>
+
+<p>
+  <strong>Ad size:</strong>
+  <%= @vehicle.ad_size %>
+</p>
+
+<p>
+  <strong>Ad duration:</strong>
+  <%= @vehicle.ad_duration %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @vehicle.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+<%= link_to 'Back', vehicles_path %>
