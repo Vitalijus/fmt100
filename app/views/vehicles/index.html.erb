@@ -1,5 +1,29 @@
 <p id="notice"><%= notice %></p>
 
+<div>
+  <%= search_form_for @q do |f| %>
+
+    <div>
+      <%= f.label :body_style_cont %>
+      <%= f.search_field :body_style_cont %>
+    </div>
+
+    <div>
+      <%= f.label :ad_size_cont %>
+      <%= f.search_field :ad_size_cont %>
+    </div>
+
+    <div>
+      <%= f.label :ad_duration_cont %>
+      <%= f.search_field :ad_duration_cont %>
+    </div>
+
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+
 <h1>Vehicles</h1>
 
 <table>
@@ -43,3 +67,4 @@
 <br>
 
 <%= link_to 'New Vehicle', new_vehicle_path %>
+<%= will_paginate @vehicles %>

@@ -25,14 +25,18 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+# search forms
+gem 'ransack'
+# pagination
+gem 'will_paginate', '~> 3.3'
 # Athentication
 gem 'devise'
-
+# Geocoding
+gem 'geocoder'
 # redis
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
-
 # sidekiq
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
