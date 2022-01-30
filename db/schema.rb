@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_28_140019) do
+ActiveRecord::Schema.define(version: 2022_01_30_085219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
-  create_table "odometers", force: :cascade do |t|
+  create_table "odometers", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "destination_address"
     t.string "origin_address"
     t.integer "distance"
@@ -27,7 +28,7 @@ ActiveRecord::Schema.define(version: 2022_01_28_140019) do
     t.index ["vehicle_id"], name: "index_odometers_on_vehicle_id"
   end
 
-  create_table "trackers", force: :cascade do |t|
+  create_table "trackers", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.float "latitude"
     t.float "longitude"
     t.string "altitude"
