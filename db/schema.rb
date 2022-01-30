@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_30_085219) do
+ActiveRecord::Schema.define(version: 2022_01_30_094526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -26,6 +26,18 @@ ActiveRecord::Schema.define(version: 2022_01_30_085219) do
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "vehicle_id", null: false
     t.index ["vehicle_id"], name: "index_odometers_on_vehicle_id"
+  end
+
+  create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "vehicle_id", null: false
+    t.string "phone_number"
+    t.string "company_title"
+    t.string "name"
+    t.string "surname"
+    t.string "email_address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["vehicle_id"], name: "index_orders_on_vehicle_id"
   end
 
   create_table "trackers", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -71,6 +83,7 @@ ActiveRecord::Schema.define(version: 2022_01_30_085219) do
   end
 
   add_foreign_key "odometers", "vehicles"
+  add_foreign_key "orders", "vehicles"
   add_foreign_key "trackers", "vehicles"
   add_foreign_key "vehicles", "users"
 end

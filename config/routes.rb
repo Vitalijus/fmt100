@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :orders
   resources :vehicles
   get "my-vehicles", :to => 'vehicles#my_vehicles'
 
