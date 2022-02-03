@@ -43,6 +43,16 @@ gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
 gem 'sidekiq-limit_fetch'
 
+# Jquery library
+gem 'jquery-rails'
+# Jquery UI
+gem 'jquery-ui-rails'
+# Bootstrap gem
+gem 'bootstrap', '~> 5.1.3'
+# Bootstrap Tooltips and popovers depend on tether for positioning
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+end
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

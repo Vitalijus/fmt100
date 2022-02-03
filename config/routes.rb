@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
 
-
-  resources :orders
+  resources :trackers
+  resources :orders, only: [:new, :create]
   resources :vehicles
-  get "my-vehicles", :to => 'vehicles#my_vehicles'
+  get "my-vehicles", to: "vehicles#my_vehicles"
 
   devise_for :users
-  resources :trackers
 
   # Sidekiq
   require "sidekiq/web"
@@ -14,5 +13,8 @@ Rails.application.routes.draw do
   require "sidekiq_unique_jobs/web"
   mount Sidekiq::Web, at: "/sidekiq"
 
-  root to: "pages#home"
+  # pages
+  get "contacts", to: "pages#contacts"
+
+  root to: "vehicles#index"
 end

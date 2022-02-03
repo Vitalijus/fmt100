@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div>
   <%= search_form_for @q do |f| %>
 
@@ -38,7 +36,7 @@
       <th>Year</th>
       <th>Ad size</th>
       <th>Ad duration</th>
-      <th>User</th>
+      <th>Km</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -55,16 +53,12 @@
         <td><%= vehicle.year %></td>
         <td><%= vehicle.ad_size %></td>
         <td><%= vehicle.ad_duration %></td>
-        <td><%= vehicle.user_id %></td>
+        <td><%= vehicle_distance_helper(vehicle.id) %></td>
         <td><%= link_to 'Show', vehicle %></td>
-        <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
-        <td><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Vehicle', new_vehicle_path %>
 <%= will_paginate @vehicles %>

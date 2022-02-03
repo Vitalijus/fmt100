@@ -9,7 +9,7 @@ module GoogleMaps
           vehicle_id = url_payload[:vehicle_id]
           distances = call(url_payload[:origins], url_payload[:destinations])
 
-          binding.pry
+          # binding.pry
           if distances.present? && distances["rows"][0]["elements"][0]["status"] == "OK" && distances["status"] == "OK"
             OdometerWorkers::CreateOdometerWorker.perform_async(distances, vehicle_id)
           else

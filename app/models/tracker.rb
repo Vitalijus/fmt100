@@ -5,7 +5,7 @@ class Tracker < ApplicationRecord
 
   private
 
-  # Check if Tracker is within city radius.
+  # Check if Tracker coordinates are within city radius.
   def within_city_radius?
     trackers = Tracker.where(id: self.id)
     within_city = trackers.near([self.vehicle.radius_latitude, self.vehicle.radius_longitude], self.vehicle.radius_size, units: :km)

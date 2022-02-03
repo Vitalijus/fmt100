@@ -1,0 +1,42 @@
+header {
+  background-color: #ffffff;
+  position: relative;
+
+  -webkit-box-shadow: 0px 3px 3px 0px #DEDBDB;
+  box-shadow: 0px 3px 3px 0px #DEDBDB;
+  -moz-box-shadow: 0px 3px 3px 0px #DEDBDB;
+}
+
+.navbar-nav {
+  width: 100%;
+}
+
+header nav.navbar {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 15px 20px;
+}
+
+header nav.navbar .navbar-brand {
+  color: #134183;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+header nav.navbar .navbar-brand:hover,
+header nav.navbar .navbar-brand:focus {
+  color: #1957b0;
+}
+
+header .nav-link {
+  width: 100%;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 5px 0;
+}
+
+header .nav-link a {
+  text-decoration: none;
+  color: #31335a;
+}
