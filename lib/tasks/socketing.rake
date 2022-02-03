@@ -1,4 +1,7 @@
 # rake socketing:start
+# rails server -b 0.0.0.0
+# http://34.215.230.158:3000/
+# internet.life.com.by
 
 # Send message to the server locally
 # echo '"\u0000\u000F357544374597827"' | nc 127.0.0.1 65432
