@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_05_102330) do
+ActiveRecord::Schema.define(version: 2022_02_05_130459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2022_02_05_102330) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "vehicle_id", null: false
+    t.string "city"
+    t.boolean "within_radius"
     t.index ["vehicle_id"], name: "index_odometers_on_vehicle_id"
   end
 
