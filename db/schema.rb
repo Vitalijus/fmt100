@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_05_130459) do
+ActiveRecord::Schema.define(version: 2022_02_05_185540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -45,9 +45,6 @@ ActiveRecord::Schema.define(version: 2022_02_05_130459) do
   create_table "trackers", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.float "latitude"
     t.float "longitude"
-    t.string "altitude"
-    t.string "angle"
-    t.string "satellites"
     t.string "speed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
