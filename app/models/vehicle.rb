@@ -8,7 +8,13 @@ class Vehicle < ApplicationRecord
   # callbacks
   before_create :set_radius
 
+  # validations
+  validates :tracker_imei, uniqueness: true, allow_nil: true
+
   private
+
+  # TO DO
+  # Move set_radius to Tracker
 
   # Set within what radius vehicle's coordinates should be saved.
   def set_radius

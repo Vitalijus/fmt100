@@ -4,6 +4,6 @@
 
 :schedule:
   odometer_scheduler_worker:
-    cron: '0 */5 * * * *'
+    cron: '0 */2 * * * *'
     class: OdometerSchedulerWorker
     enabled: true

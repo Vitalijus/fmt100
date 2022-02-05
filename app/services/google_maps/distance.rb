@@ -1,7 +1,10 @@
 module GoogleMaps
   class Distance < Base
+    # TO DO
+    # Improve adding initialise time_ago
+    # Check when tracker within_radius
     def distance
-      tracker = Tracker.where("created_at > ?", 500.minute.ago)
+      tracker = Tracker.where("created_at > ?", 2.minute.ago)
 
       if tracker.present?
         coordinates_list(tracker).each do |coordinate_list|

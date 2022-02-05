@@ -1,7 +1,14 @@
 class Tracker < ApplicationRecord
+  # associations
   belongs_to :vehicle
+
+  # callbacks
   after_create :within_city_radius?
+
+  # geocode
   reverse_geocoded_by :latitude, :longitude
+
+  # validations
 
   private
 
