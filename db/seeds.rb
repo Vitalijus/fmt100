@@ -10,6 +10,8 @@
 # Tracker.last(100).each{|tracker| p "latitude: #{tracker.latitude}, longitude: #{tracker.longitude}, vehicle_id: #{tracker.vehicle_id}"}
 
 @coordinates = [
+  { latitude: 53.91352101552962, longitude: 27.247520368856208, vehicle_id: "72de8437-4766-4b33-bb32-d699b4536c7b" },
+  { latitude: 53.91785200006078, longitude: 27.326626730813807, vehicle_id: "72de8437-4766-4b33-bb32-d699b4536c7b" },
   { latitude: 53.9335283, longitude: 27.5356033, vehicle_id: "72de8437-4766-4b33-bb32-d699b4536c7b" },
   { latitude: 53.932145, longitude: 27.5609866, vehicle_id: "72de8437-4766-4b33-bb32-d699b4536c7b" },
   { latitude: 53.9338933, longitude: 27.5344683, vehicle_id: "72de8437-4766-4b33-bb32-d699b4536c7b" },

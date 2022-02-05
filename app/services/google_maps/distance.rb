@@ -1,7 +1,5 @@
 module GoogleMaps
   class Distance < Base
-    # TO DO
-    # Check when tracker within_radius
 
     def initialize(time_ago)
       @time_ago = time_ago
@@ -26,6 +24,7 @@ module GoogleMaps
       end
     end
 
+    # Slice Tracker coordinates and return as [ {}, {} ]
     def coordinates_list(tracker)
       tracker.each_slice(2).to_a.map do |coordinates|
         coordinates.map do |coordinate|

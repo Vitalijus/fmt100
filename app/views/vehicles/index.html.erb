@@ -37,6 +37,7 @@
       <th>Ad size</th>
       <th>Ad duration</th>
       <th>Km</th>
+      <th>Time in the city</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -54,6 +55,7 @@
         <td><%= vehicle.ad_size %></td>
         <td><%= vehicle.ad_duration %></td>
         <td><%= vehicle_distance_helper(vehicle.id) %></td>
+        <td><%= vehicle_location_helper(vehicle.id) %></td>
         <td><%= link_to 'Show', vehicle %></td>
       </tr>
     <% end %>
