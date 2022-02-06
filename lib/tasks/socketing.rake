@@ -270,7 +270,7 @@ namespace :socketing do
 
       def create_tracker(gps_data)
         gps_data.each do |gps|
-          if tracker[:gps_data][:latitude] != 0.0 && tracker[:gps_data][:longitude] != 0.0 && tracker[:gps_data][:speed] > 5
+          if gps[:gps_data][:latitude] != 0.0 && gps[:gps_data][:longitude] != 0.0 && gps[:gps_data][:speed] > 5
             vehicle = Vehicle.find_by(tracker_imei: gps[:imei])
             vehicle.trackers.create(build_tracker(gps)) if vehicle.present?
           end
