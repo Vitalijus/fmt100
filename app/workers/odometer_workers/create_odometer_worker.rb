@@ -3,6 +3,9 @@ module OdometerWorkers
     include Sidekiq::Worker
     sidekiq_options retry: 3
 
+    # OdometerWorkers::CreateOdometerWorker do not serialize to JSON safely. This will raise an error in
+    # Sidekiq 7.0. See https://github.com/mperham/sidekiq/wiki/Best-Practices or raise an error today
+    # by calling `Sidekiq.strict_args!` during Sidekiq initialization.
     def perform(distances, odometer_payload)
       distances = distances.with_indifferent_access
       odometer_payload = odometer_payload.with_indifferent_access

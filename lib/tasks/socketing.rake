@@ -239,7 +239,7 @@ namespace :socketing do
                     client.send([0x01].pack("C"), 0) # send response to module
                   elsif index == 1 # Second step in communication with module
                     decoder = Decoder.new(data, @imei) # Decode data
-                    Rollbar.log("error", "#{decoder}") if !decoder.present?
+                    Rollbar.log("error", "FMT100 data decoding error: #{decoder}") if !decoder.present?
                     num_of_rec = decoder.number_of_rec # get number_of_rec
 
                     if num_of_rec == 0
@@ -273,7 +273,7 @@ namespace :socketing do
 
       def create_tracker(gps_data)
         gps_data.each do |gps|
-          if gps[:gps_data][:latitude] != 0.0 && gps[:gps_data][:longitude] != 0.0 && gps[:gps_data][:speed] > 5
+          if gps[:gps_data][:latitude] != 0.0 && gps[:gps_data][:longitude] != 0.0 && gps[:gps_data][:speed] > 7
             vehicle = Vehicle.find_by(tracker_imei: gps[:imei])
             vehicle.trackers.create(build_tracker(gps)) if vehicle.present?
           end

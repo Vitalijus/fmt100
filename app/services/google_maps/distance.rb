@@ -17,8 +17,8 @@ module GoogleMaps
           if distances.present? && distances["rows"][0]["elements"][0]["status"] == "OK" && distances["status"] == "OK"
             OdometerWorkers::CreateOdometerWorker.perform_async(distances, odometer_payload)
           else
-            Rails.logger.error "#{distances}"
-            Rollbar.log("error", "#{distances}")
+            Rails.logger.error "GoogleMaps distance matrix: #{distances}"
+            Rollbar.log("error", "GoogleMaps distance matrix: #{distances}")
           end
         end
       end
@@ -26,7 +26,7 @@ module GoogleMaps
 
     # Slice Tracker coordinates and return as [ {}, {} ]
     def coordinates_list(tracker)
-      tracker.each_slice(2).to_a.map do |coordinates|
+      tracker.each_slice(4).to_a.map do |coordinates|
         coordinates.map do |coordinate|
           {
             latitude: coordinate[:latitude],
