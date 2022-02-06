@@ -36,10 +36,11 @@ class Tracker < ApplicationRecord
     }
   end
 
+  # Radius size data: https://www.mapdevelopers.com/draw-circle-tool.php
   def location_radiuses
     [
-      { city: "Vilnius", radius_size: 10, radius_latitude: 54.687795, radius_longitude: 25.277018},
-      { city: "Minsk", radius_size: 15, radius_latitude: 53.90126068000729, radius_longitude: 27.555019995465507}
+      { city: "Vilnius", radius_size: 10, radius_latitude: 54.687046, radius_longitude: 25.282911},
+      { city: "Minsk", radius_size: 10, radius_latitude: 53.90126068000729, radius_longitude: 27.555019995465507}
     ]
   end
 end

@@ -17,7 +17,8 @@ module GoogleMaps
           if distances.present? && distances["rows"][0]["elements"][0]["status"] == "OK" && distances["status"] == "OK"
             OdometerWorkers::CreateOdometerWorker.perform_async(distances, odometer_payload)
           else
-            # Rollbar notification
+            Rails.logger.error "#{distances}"
+            Rollbar.log("error", "#{distances}")
           end
         end
       end
