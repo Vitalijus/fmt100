@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Rails console
-# Tracker.last(100).each{|tracker| p "latitude: #{tracker.latitude}, longitude: #{tracker.longitude}, vehicle_id: #{tracker.vehicle_id}"}
+# tracker = Tracker.order(created_at: :desc).last(500).each{|tracker| p "latitude: #{tracker.latitude}, longitude: #{tracker.longitude}, vehicle_id: #{tracker.vehicle_id}, speed: #{tracker.speed}, created_at #{tracker.created_at}"}
 # odometer = Odometer.order(created_at: :desc).first(200).each{|odometer| p "distance: #{odometer.distance}, duration: #{odometer.duration}, destination_address: #{odometer.destination_address}, origin_address: #{odometer.origin_address}, created_at #{odometer.created_at}"}
 
 @coordinates = [
