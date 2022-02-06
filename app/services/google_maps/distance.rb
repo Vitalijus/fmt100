@@ -14,7 +14,6 @@ module GoogleMaps
           odometer_payload = odometer_payload(coordinate_list)
           distances = call(url_payload[:origins], url_payload[:destinations])
 
-          # binding.pry
           if distances.present? && distances["rows"][0]["elements"][0]["status"] == "OK" && distances["status"] == "OK"
             OdometerWorkers::CreateOdometerWorker.perform_async(distances, odometer_payload)
           else

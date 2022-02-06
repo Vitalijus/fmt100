@@ -1,8 +1,11 @@
 # rake socketing:start
 # rails server -b 0.0.0.0
-# http://54.245.157.224:3000/
+# http://34.220.173.133:3000/
+# http://34.220.173.133:3000/sidekiq/recurring-jobs
 # internet.life.com.by
-# ssh -i "fmt100.pem" ubuntu@ec2-54-245-157-224.us-west-2.compute.amazonaws.com
+# iot.truphone.com
+# scp -i fmt100.pem  ~/Downloads/gps_server1.py ubuntu@34.215.230.158:/home/ubuntu gps_server1.py
+# ssh -i "fmt100.pem" ubuntu@ec2-34-220-173-133.us-west-2.compute.amazonaws.com
 
 # Send message to the server locally
 # echo '"\u0000\u000F357544374597827"' | nc 127.0.0.1 65432
@@ -207,7 +210,7 @@ namespace :socketing do
         return data
       end
     end
-    
+
     class ClientThread
       def initialize(port)
         @server = TCPServer.open(port)
@@ -267,7 +270,7 @@ namespace :socketing do
 
       def create_tracker(gps_data)
         gps_data.each do |gps|
-          unless (gps[:gps_data][:longitude] && gps[:gps_data][:latitude]) == 0.0
+          if tracker[:gps_data][:latitude] != 0.0 && tracker[:gps_data][:longitude] != 0.0 && tracker[:gps_data][:speed] > 5
             vehicle = Vehicle.find_by(tracker_imei: gps[:imei])
             vehicle.trackers.create(build_tracker(gps)) if vehicle.present?
           end

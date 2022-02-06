@@ -8,6 +8,7 @@
 
 # Rails console
 # Tracker.last(100).each{|tracker| p "latitude: #{tracker.latitude}, longitude: #{tracker.longitude}, vehicle_id: #{tracker.vehicle_id}"}
+# odometer = Odometer.order(created_at: :desc).first(200).each{|odometer| p "distance: #{odometer.distance}, duration: #{odometer.duration}, destination_address: #{odometer.destination_address}, origin_address: #{odometer.origin_address}, created_at #{odometer.created_at}"}
 
 @coordinates = [
   { latitude: 53.91352101552962, longitude: 27.247520368856208, vehicle_id: "72de8437-4766-4b33-bb32-d699b4536c7b" },
