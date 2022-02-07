@@ -1,26 +1,45 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="form-container">
+  <div class="form-header">
+    Prisijungimas prie paskyros
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="form-fields-container">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <% if flash[:alert] %>
+        <div class="alert alert-danger" role="alert">
+          Neteisingas elektroninio pašto adresas arba slaptažodis.
+        </div>
+      <% end %>
+
+      <div class="form-fields">
+        <div class="field">
+          <%= f.label :email, "Elektroninio pašto adresas" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password, "Slaptažodis" %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+
+        <div class="field-remember-me-container">
+          <% if devise_mapping.rememberable? %>
+            <div class="field-remeber-me">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me, "Prisiminti" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="d-grid gap-2">
+        <%= f.submit "Prisijungti", class: "btn btn-primary" %>
+      </div>
+    <% end %>
   </div>
+</div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<div class="shared-container">
+  <%= render "users/shared/links" %>
+</div>

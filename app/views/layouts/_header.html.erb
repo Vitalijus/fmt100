@@ -36,7 +36,7 @@
 
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                     <%= link_to my_vehicles_path, :class => "dropdown-item" do %>
-                      My Vehicles
+                      Mano auto
                     <% end %>
 
                     <%= link_to edit_user_registration_path, :class => "dropdown-item" do %>
@@ -64,38 +64,3 @@
     </div>
   </nav>
 </header>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<p id="notice"><%= notice %></p>
-<div>
-  <h3><%= link_to "LOGO", root_url %></h3>
-
-  <div id="user_nav">
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
-    <%= link_to "Profile", edit_user_registration_path %>
-    <%= link_to "My Vehicles", my_vehicles_path %>
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  <% end %>
-</div>
-
-<div>
-   <%= link_to "New Vehicle", new_vehicle_path %>
-   <%= link_to "Contacts", contacts_path %>
-</div>
-</div>

@@ -1,16 +1,31 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="form-container">
+  <div class="form-header">
+    Pamiršai slaptažodį?
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+  <div class="form-fields-container">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 
-<%= render "users/shared/links" %>
+    <% if resource.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <%= render "users/shared/error_messages", resource: resource %>
+      </div>
+    <% end %>
+
+      <div class="form-fields">
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+      </div>
+
+      <div class="d-grid gap-2">
+        <%= f.submit "Priminti", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="shared-container">
+  <%= render "users/shared/links" %>
+</div>

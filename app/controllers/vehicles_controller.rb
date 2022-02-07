@@ -9,7 +9,7 @@ class VehiclesController < ApplicationController
   # GET /vehicles or /vehicles.json
   def index
     @q = Vehicle.ransack(params[:q])
-    @vehicles = @q.result(distinct: true).paginate(page: params[:page], per_page: 1)
+    @vehicles = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
   end
 
   # GET /vehicles/1 or /vehicles/1.json

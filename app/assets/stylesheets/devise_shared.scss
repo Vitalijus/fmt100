@@ -1,0 +1,24 @@
+.shared-container {
+  font-family: 'Geomanist', Arial, sans-serif;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+
+  -webkit-box-shadow: 0px 0px 3px 0px #A39B9B;
+  box-shadow: 0px 0px 3px 0px #A39B9B;
+  -moz-box-shadow: 0px 0px 3px 0px #A39B9B;
+}
+
+.shared-container a {
+  color: #172D45;
+  text-decoration: none;
+}
+
+.shared-container a:hover {
+  text-decoration: underline;
+}

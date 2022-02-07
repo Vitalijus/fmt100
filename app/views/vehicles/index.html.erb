@@ -1,4 +1,4 @@
-<div>
+<div class="search-container">
   <%= search_form_for @q do |f| %>
 
     <div>
@@ -22,45 +22,38 @@
   <% end %>
 </div>
 
-<h1>Vehicles</h1>
+<div class="vehicle-list-container">
+  <div class="vehicle-list-header">
+    <div class="total-vehicles">
+      Viso: 59 Automobiliai
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Manufacturer</th>
-      <th>Model</th>
-      <th>Plate number</th>
-      <th>Category</th>
-      <th>Body style</th>
-      <th>Color</th>
-      <th>Year</th>
-      <th>Ad size</th>
-      <th>Ad duration</th>
-      <th>Km</th>
-      <th>Time in the city</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <ul class="vehicle-list-items">
     <% @vehicles.each do |vehicle| %>
-      <tr>
-        <td><%= vehicle.manufacturer %></td>
-        <td><%= vehicle.model %></td>
-        <td><%= vehicle.plate_number %></td>
-        <td><%= vehicle.category %></td>
-        <td><%= vehicle.body_style %></td>
-        <td><%= vehicle.color %></td>
-        <td><%= vehicle.year %></td>
-        <td><%= vehicle.ad_size %></td>
-        <td><%= vehicle.ad_duration %></td>
-        <td><%= vehicle_distance_helper(vehicle.id) %></td>
-        <td><%= vehicle_location_helper(vehicle.id) %></td>
-        <td><%= link_to 'Show', vehicle %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <li class="vehicle-list-item">
+        <div class="vehicle-list-item-title">
+          <%= link_to vehicle do %>
+            <%= vehicle.manufacturer %> <%= vehicle.model %>
+          <% end %>
+        </div>
 
-<br>
-<%= will_paginate @vehicles %>
+
+        <%= vehicle.plate_number %>
+        <%= vehicle.category %>
+        <%= vehicle.body_style %>
+        <%= vehicle.color %>
+        <%= vehicle.year %>
+        <%= vehicle.ad_size %>
+        <%= vehicle.ad_duration %>
+        <%= vehicle_distance_helper(vehicle.id) %>
+        <%= vehicle_location_helper(vehicle.id) %>
+
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="search-container">
+  <%= will_paginate @vehicles %>
+</div>
