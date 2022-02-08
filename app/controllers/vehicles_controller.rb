@@ -9,7 +9,7 @@ class VehiclesController < ApplicationController
   # GET /vehicles or /vehicles.json
   def index
     @q = Vehicle.ransack(params[:q])
-    @vehicles = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
+    @vehicles = @q.result(distinct: true).paginate(page: params[:page], per_page: 2)
   end
 
   # GET /vehicles/1 or /vehicles/1.json
@@ -70,6 +70,6 @@ class VehiclesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def vehicle_params
-      params.require(:vehicle).permit(:manufacturer, :model, :plate_number, :category, :body_style, :color, :year, :ad_size, :ad_duration, :city)
+      params.require(:vehicle).permit(:manufacturer, :model, :plate_number, :category, :body_style, :color, :year, :ad_size, :ad_duration)
     end
 end

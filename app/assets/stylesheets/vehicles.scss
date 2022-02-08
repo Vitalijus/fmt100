@@ -2,15 +2,14 @@
   max-width: 1200px;
   margin: 20px auto;
   color: #31335a;
-  // background-color: #ffffff;
 
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+}
 
-  // -webkit-box-shadow: 0px 0px 3px 0px #A39B9B;
-  // box-shadow: 0px 0px 3px 0px #A39B9B;
-  // -moz-box-shadow: 0px 0px 3px 0px #A39B9B;
+.card {
+  border: 0px;
 }
 
 .vehicle-list-container.my-vehicles {
@@ -18,24 +17,26 @@
 }
 
 .vehicle-list-header {
-  padding: 5px 0px;
-  border: 1px solid red;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 40px;
+  // border: 1px solid red;
 }
 
 .total-vehicles {
   font-weight: 500;
   text-align: left;
   font-size: 14px;
-  border: 1px solid red;
+  // border: 1px solid red;
 }
 
 ul.vehicle-list-items {
   width: 100%;
-  // border: 1px solid red;
 }
 
 li.vehicle-list-item {
-  padding: 20px;
+  width: 100%;
+  padding: 30px;
   margin-bottom: 15px;
   background-color: white;
 
@@ -47,8 +48,60 @@ li.vehicle-list-item {
   border-top-right-radius: 3px;
 }
 
+.vehicle-list-item-image {
+  width: 120px;
+  height: 80px;
+  display: inline-block;
+  vertical-align: top;
+  background-color: #eef1f4;
+  margin-right: -4px;
+}
+
+.vehicle-list-item-container {
+  width: calc(100% - 120px);
+  vertical-align: top;
+  display: inline-block;
+  margin-right: -4px;
+}
+
+.vehicle-list-item-title-container {
+  width: 100%;
+}
+
 .vehicle-list-item-title {
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 10px;
   font-size: 18px;
   font-weight: 500;
+}
+
+.vehicle-list-item-location {
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  color: #545f7c;
+}
+
+.vehicle-list-item-data {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px 10px;
+  color: #545f7c;
+}
+
+/* show.htm.erb */
+
+.show-container {
+  width: 1200px;
+  margin: 0 auto;
+  // border: 1px solid red;
+}
+
+.carousel-item img {
+  height: 400px;
+  background-color: #cccccc;
   // border: 1px solid red;
 }

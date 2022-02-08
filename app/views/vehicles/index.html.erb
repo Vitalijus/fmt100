@@ -1,59 +1,74 @@
 <div class="search-container">
   <%= search_form_for @q do |f| %>
+    <div class="search-fields-container">
+      <div class="row g-2">
+        <div class="col-md-6">
+          <div class="form-floating">
+            <%= f.select :color_cont, options_for_select(["Vilnius", "Minsk"]), {}, {class: "form-select", id: "floatingSelectGrid"} %>
+            <label for="floatingSelectGrid">Miestas</label>
+          </div>
+        </div>
 
-    <div>
-      <%= f.label :body_style_cont %>
-      <%= f.search_field :body_style_cont %>
-    </div>
+        <div class="col-md-5">
+          <div class="form-floating">
+            <%= f.select :body_style_cont, options_for_select(["Lengvasis automobilis"]), {}, {class: "form-select", id: "floatingSelectGrid"} %>
+            <label for="floatingSelectGrid">Kėbulo tipas</label>
+          </div>
+        </div>
 
-    <div>
-      <%= f.label :ad_size_cont %>
-      <%= f.search_field :ad_size_cont %>
-    </div>
-
-    <div>
-      <%= f.label :ad_duration_cont %>
-      <%= f.search_field :ad_duration_cont %>
-    </div>
-
-    <div>
-      <%= f.submit %>
+        <div class="col-md d-grid gap-2">
+          <%= f.submit "Ieškoti", class: "btn btn-primary" %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
 
-<div class="vehicle-list-container">
+
+
   <div class="vehicle-list-header">
     <div class="total-vehicles">
-      Viso: 59 Automobiliai
+      Viso: <%= Vehicle.count %> automobiliai
     </div>
   </div>
 
-  <ul class="vehicle-list-items">
-    <% @vehicles.each do |vehicle| %>
-      <li class="vehicle-list-item">
-        <div class="vehicle-list-item-title">
-          <%= link_to vehicle do %>
-            <%= vehicle.manufacturer %> <%= vehicle.model %>
-          <% end %>
+  <% @vehicles.each do |vehicle| %>
+    <div class="vehicle-list-container">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            <img src="https://s.auto.drom.ru/i24197/c/photos/fullsize/lexus/gs300/lexus_gs300_521056.jpg" class="img-fluid rounded-start" alt="...">
+          </div>
+
+          <div class="col-md-10">
+            <div class="card-body">
+              <div class="vehicle-list-item-title-container">
+                <div class="card-title">
+                  <%= link_to vehicle do %>
+                    <%= vehicle.manufacturer %> <%= vehicle.model %>
+                  <% end %>
+                </div>
+
+                <div class="vehicle-list-item-location">
+                  <%= vehicle_location_helper(vehicle.id) %>
+                </div>
+              </div>
+
+              <div class="card-text">
+                <small class="text-muted">
+                    <%= vehicle.category %> |
+                    <%= vehicle.body_style %> |
+                    <%= vehicle.color %> |
+                    <%= vehicle.year %> |
+                    <%= vehicle_distance_helper(vehicle.id) %>/viso |
+                    <%= vehicle_distance_helper(vehicle.id) %>/4sav.
+                </small>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  <% end %>
 
-
-        <%= vehicle.plate_number %>
-        <%= vehicle.category %>
-        <%= vehicle.body_style %>
-        <%= vehicle.color %>
-        <%= vehicle.year %>
-        <%= vehicle.ad_size %>
-        <%= vehicle.ad_duration %>
-        <%= vehicle_distance_helper(vehicle.id) %>
-        <%= vehicle_location_helper(vehicle.id) %>
-
-      </li>
-    <% end %>
-  </ul>
-</div>
-
-<div class="search-container">
-  <%= will_paginate @vehicles %>
-</div>
+  <%= will_paginate @vehicles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
