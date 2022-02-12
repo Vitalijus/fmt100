@@ -4,14 +4,14 @@
       <div class="row g-2">
         <div class="col-md-6">
           <div class="form-floating">
-            <%= f.select :color_cont, options_for_select(["Vilnius", "Minsk"]), {}, {class: "form-select", id: "floatingSelectGrid"} %>
+            <%= f.select :city_cont, options_for_select(options_for_select_helper), {}, {class: "form-select", id: "floatingSelectGrid"} %>
             <label for="floatingSelectGrid">Miestas</label>
           </div>
         </div>
 
         <div class="col-md-5">
           <div class="form-floating">
-            <%= f.select :body_style_cont, options_for_select(["Lengvasis automobilis"]), {}, {class: "form-select", id: "floatingSelectGrid"} %>
+            <%= f.select :body_style_cont, options_for_select(["Sedan"]), {}, {class: "form-select", id: "floatingSelectGrid"} %>
             <label for="floatingSelectGrid">Kėbulo tipas</label>
           </div>
         </div>
@@ -24,16 +24,40 @@
   <% end %>
 </div>
 
-
-
-  <div class="vehicle-list-header">
-    <div class="total-vehicles">
-      Viso: <%= Vehicle.count %> automobiliai
-    </div>
+<div class="vehicle-list-header">
+  <div class="total-vehicles">
+    Viso: <%= @q.result(distinct: true).count %> automobiliai
   </div>
 
-  <% @vehicles.each do |vehicle| %>
-    <div class="vehicle-list-container">
+  <span class="sort-by">
+    <div class="btn-group">
+      <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Rikiuoti pagal
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <%= sort_link(@q, :total_km, hide_indicator: true, default_order: :desc) do %>
+          <li><button class="dropdown-item" type="button">Viso km.</button></li>
+        <% end %>
+
+        <%= sort_link(@q, :last_four_weeks_km, hide_indicator: true, default_order: :desc) do %>
+          <li><button class="dropdown-item" type="button">Pask. 4sav. km.</button></li>
+        <% end %>
+
+        <%= sort_link(@q, :total_km, hide_indicator: true, default_order: :desc) do %>
+          <li><button class="dropdown-item" type="button">Kaina</button></li>
+        <% end %>
+
+        <%= sort_link(@q, :percentage, hide_indicator: true, default_order: :asc) do %>
+          <li><button class="dropdown-item" type="button">Procentai</button></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<% @vehicles.each do |vehicle| %>
+  <div class="vehicle-list-container">
+    <%= link_to vehicle do %>
       <div class="card mb-3">
         <div class="row g-0">
           <div class="col-md-2">
@@ -43,32 +67,39 @@
           <div class="col-md-10">
             <div class="card-body">
               <div class="vehicle-list-item-title-container">
-                <div class="card-title">
-                  <%= link_to vehicle do %>
-                    <%= vehicle.manufacturer %> <%= vehicle.model %>
-                  <% end %>
+                <div class="vehicle-list-item-title">
+                  <%= vehicle.manufacturer %> <%= vehicle.model %>
+
+                  <div class="vehicle-list-item-subtitle">
+                    <%= vehicle.percentage %>% laiko važinėja <%= vehicle.city %>
+                  </div>
                 </div>
 
-                <div class="vehicle-list-item-location">
-                  <%= vehicle_location_helper(vehicle.id) %>
+                <div class="vehicle-list-item-total-km">
+                  viso: <%= (vehicle.total_km / 1000.0).round(1) %>km
                 </div>
               </div>
 
               <div class="card-text">
+                <%= vehicle.category %> &#8226;
+                <%= vehicle.body_style %> &#8226;
+                <%= vehicle.color %> &#8226;
+                <%= vehicle.year %> &#8226;
+                <%= vehicle.city %>
                 <small class="text-muted">
-                    <%= vehicle.category %> |
-                    <%= vehicle.body_style %> |
-                    <%= vehicle.color %> |
-                    <%= vehicle.year %> |
-                    <%= vehicle_distance_helper(vehicle.id) %>/viso |
-                    <%= vehicle_distance_helper(vehicle.id) %>/4sav.
+
                 </small>
+              </div>
+
+              <div class="card-footer">
+                Paskutinės 4 savaitės: <%= (vehicle.last_four_weeks_km / 1000.0).round(1) %>km
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+<% end %>
 
-  <%= will_paginate @vehicles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+<%= will_paginate @vehicles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>

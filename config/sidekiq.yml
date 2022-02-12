@@ -7,3 +7,7 @@
     cron: '0 */2 * * * *'
     class: OdometerSchedulerWorker
     enabled: true
+  vehicle_scheduler_worker:
+    cron: '0 */5 * * * *'
+    class: VehicleSchedulerWorker
+    enabled: true

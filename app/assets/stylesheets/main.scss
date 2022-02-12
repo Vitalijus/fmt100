@@ -7,6 +7,11 @@ html, body {
   outline: none;
 }
 
+a, a:hover {
+  text-decoration: none;
+  color: #31335a;
+}
+
 ul, li {
   margin: 0;
   padding: 0;

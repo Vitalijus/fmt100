@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_05_185540) do
+ActiveRecord::Schema.define(version: 2022_02_12_184606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -83,6 +83,10 @@ ActiveRecord::Schema.define(version: 2022_02_05_185540) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "tracker_imei"
+    t.string "city"
+    t.integer "total_km"
+    t.integer "last_four_weeks_km"
+    t.float "percentage"
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
