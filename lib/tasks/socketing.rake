@@ -1,11 +1,11 @@
 # rake socketing:start
 # rails server -b 0.0.0.0
-# http://34.220.173.133:3000/
-# http://34.220.173.133:3000/sidekiq/recurring-jobs
+# http://52.12.75.4:3000/
+# http://52.12.75.4:3000/sidekiq/recurring-jobs
 # internet.life.com.by
 # iot.truphone.com
-# scp -i fmt100.pem  ~/Downloads/gps_server1.py ubuntu@34.215.230.158:/home/ubuntu gps_server1.py
-# ssh -i "fmt100.pem" ubuntu@ec2-34-220-173-133.us-west-2.compute.amazonaws.com
+# ssh -i "fmt100.pem" ubuntu@ec2-52-12-75-4.us-west-2.compute.amazonaws.com
+# scp -i fmt100.pem  ~/Downloads/gps_server1.py ubuntu@52.12.75.4:/home/ubuntu gps_server1.py
 
 # Send message to the server locally
 # echo '"\u0000\u000F357544374597827"' | nc 127.0.0.1 65432

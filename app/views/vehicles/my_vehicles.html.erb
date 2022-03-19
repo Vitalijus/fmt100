@@ -33,7 +33,7 @@
           <td><%= my_vehicle.year %></td>
           <td><%= my_vehicle.ad_size %></td>
           <td><%= my_vehicle.ad_duration %></td>
-          <td><%= vehicle_distance_helper(my_vehicle.id) %></td>
+          <td><%= price_helper(my_vehicle) %>€/km</td>
           <td><%= my_vehicle.orders.count %></td>
           <td><%= link_to 'Show', my_vehicle %></td>
           <td><%= link_to 'Edit', edit_vehicle_path(my_vehicle) %></td>
