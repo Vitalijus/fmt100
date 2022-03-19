@@ -13,32 +13,32 @@
 
   <%= form.hidden_field :vehicle_id %>
 
-  <div class="field">
-    <%= form.label :phone_number %>
-    <%= form.text_field :phone_number %>
+  <div class="order-field form-floating">
+    <%= form.text_field :name, {class: "form-control", id: "floatingInput"} %>
+    <%= form.label :name, "Vardas", for: "floatingInput" %>
   </div>
 
-  <div class="field">
-    <%= form.label :company_title %>
-    <%= form.text_field :company_title %>
+  <div class="order-field form-floating">
+    <%= form.text_field :surname, {class: "form-control", id: "floatingInput"} %>
+    <%= form.label :surname, "Pavardė", for: "floatingInput" %>
   </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="order-field form-floating">
+    <%= form.text_field :email_address, {class: "form-control", id: "floatingInput"} %>
+    <%= form.label :email_address, "Pašto adresas", for: "floatingInput" %>
   </div>
 
-  <div class="field">
-    <%= form.label :surname %>
-    <%= form.text_field :surname %>
+  <div class="order-field form-floating">
+    <%= form.text_field :phone_number, {class: "form-control", id: "floatingInput"} %>
+    <%= form.label :phone_number, "Tel. numeris", for: "floatingInput" %>
   </div>
 
-  <div class="field">
-    <%= form.label :email_address %>
-    <%= form.text_field :email_address %>
+  <div class="order-field form-floating">
+    <%= form.text_field :company_title, {class: "form-control", id: "floatingInput"} %>
+    <%= form.label :company_title, "Įmonės pav.", for: "floatingInput" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="d-grid gap-2">
+    <%= form.submit "Užsakyti", class: "btn btn-primary" %>
   </div>
 <% end %>
