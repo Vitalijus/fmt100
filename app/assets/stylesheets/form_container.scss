@@ -1,0 +1,24 @@
+.container-fluid.wrapper {
+  max-width: 600px;
+  padding: 10px;
+}
+
+.content-wrapper {
+  background-color: #ffffff;
+
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.content-wrapper-header {
+  padding: 20px;
+  border-bottom: 1px solid #CFD3D8;
+  text-align: center;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.content-body {
+  padding: 20px;
+}

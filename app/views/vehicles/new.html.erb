@@ -1,5 +1,11 @@
-<h1>New Vehicle</h1>
+<div class="container-fluid wrapper">
+  <div class="content-wrapper">
+    <div class="content-wrapper-header">
+      Registruoti automobilį
+    </div>
 
-<%= render 'form', vehicle: @vehicle %>
-
-<%= link_to 'Back', vehicles_path %>
+    <div class="content-body">
+      <%= render 'form', vehicle: @vehicle %>
+    </div>
+  </div>
+</div>

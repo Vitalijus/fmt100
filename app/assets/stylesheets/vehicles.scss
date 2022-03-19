@@ -120,14 +120,20 @@ li.vehicle-list-item {
 
 /* show.htm.erb */
 
-.show-container {
+.vehicle-show {
   width: 1200px;
   margin: 0 auto;
-  // border: 1px solid red;
+  border: 1px solid green;
 }
 
 .carousel-item img {
   height: 400px;
   background-color: #cccccc;
   // border: 1px solid red;
+}
+
+/* form.htm.erb */
+
+.vehicle-field {
+  margin-bottom: 10px;
 }
