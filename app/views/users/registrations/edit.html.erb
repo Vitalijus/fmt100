@@ -1,29 +1,29 @@
-<div class="form-container">
-  <div class="form-header">
-    Nustatymai
-  </div>
+<div class="container-fluid wrapper">
+  <div class="content-wrapper">
+    <div class="content-wrapper-header">
+      Nustatymai
+    </div>
 
-  <div class="form-fields-container">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <% if resource.errors.any? %>
-        <div class="alert alert-danger" role="alert">
-          <%= render "users/shared/error_messages", resource: resource %>
-        </div>
-      <% end %>
+    <div class="content-body">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <% if resource.errors.any? %>
+          <div class="alert alert-danger" role="alert">
+            <%= render "users/shared/error_messages", resource: resource %>
+          </div>
+        <% end %>
 
-      <div class="form-fields">
-        <div class="field">
-          <%= f.label :email, "Elektroninio pašto adresas" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="registration-field form-floating">
+          <%= f.email_field :email, {autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput"} %>
+          <%= f.label :email, "Elektroninio pašto adresas", for: "floatingInput" %>
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
 
-        <div class="field">
-          <%= f.label :password, "Naujas slaptažodis" %>
-          <%= f.password_field :password, autocomplete: "new-password" %>
+        <div class="registration-field form-floating">
+          <%= f.password_field :password, {autocomplete: "new-password", class: "form-control", id: "floatingInput"} %>
+          <%= f.label :password, "Naujas slaptažodis", for: "floatingInput" %>
           <% if @minimum_password_length %>
             <div class="field-helper-text">
               Mažiausiai <%= @minimum_password_length %> simboliai. Palikti tuščią jei nenorite keisti slaptažodį.
@@ -31,14 +31,14 @@
           <% end %>
         </div>
 
-        <div class="field">
-          <%= f.label :password_confirmation, "Pakartoti naują slaptažodį" %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <div class="registration-field form-floating">
+          <%= f.password_field :password_confirmation, {autocomplete: "new-password", class: "form-control", id: "floatingInput"} %>
+          <%= f.label :password_confirmation, "Pakartoti naują slaptažodį", for: "floatingInput" %>
         </div>
 
-        <div class="field">
-          <%= f.label :current_password, "Dabartinis slaptažodis" %>
-          <%= f.password_field :current_password, autocomplete: "current-password" %>
+        <div class="registration-field form-floating">
+          <%= f.password_field :current_password, {autocomplete: "current-password", class: "form-control", id: "floatingInput"} %>
+          <%= f.label :current_password, "Dabartinis slaptažodis", for: "floatingInput" %>
           <div class="field-helper-text">
             Mums reikalingas Jūsų dabartinis slaptažodžis, kad patvirtintume pakeitimus.
           </div>
@@ -47,17 +47,11 @@
         <div class="d-grid gap-2">
           <%= f.submit "Atnaujinti", class: "btn btn-primary" %>
         </div>
+      <% end %>
+
+      <div class="delete-account-container">
+        <%= button_to "Trinti paskyrą?", registration_path(resource_name), data: { confirm: "Ar tikrai?" }, method: :delete, class: "btn btn-secondary" %>
       </div>
-    <% end %>
-  </div>
-</div>
-
-<div class="form-container">
-  <div class="form-header">
-    Trinti paskyrą?
-  </div>
-
-  <div class="form-fields-container">
-    <%= button_to "Trinti", registration_path(resource_name), data: { confirm: "Ar tikrai?" }, method: :delete, class: "btn btn-primary" %>
+    </div>
   </div>
 </div>

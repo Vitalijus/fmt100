@@ -1,26 +1,26 @@
-<div class="form-container">
-  <div class="form-header">
-    Prisijungimas prie paskyros
-  </div>
+<div class="container-fluid wrapper">
+  <div class="content-wrapper">
+    <div class="content-wrapper-header">
+      Prisijungimas prie paskyros
+    </div>
 
-  <div class="form-fields-container">
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="content-body">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-      <% if flash[:alert] %>
-        <div class="alert alert-danger" role="alert">
-          Neteisingas elektroninio pašto adresas arba slaptažodis.
+        <% if flash[:alert] %>
+          <div class="alert alert-danger" role="alert">
+            Neteisingas elektroninio pašto adresas arba slaptažodis.
+          </div>
+        <% end %>
+
+        <div class="registration-field form-floating">
+          <%= f.email_field :email, {autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput"} %>
+          <%= f.label :email, "Elektroninio pašto adresas", for: "floatingInput" %>
         </div>
-      <% end %>
 
-      <div class="form-fields">
-        <div class="field">
-          <%= f.label :email, "Elektroninio pašto adresas" %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :password, "Slaptažodis" %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+        <div class="registration-field form-floating">
+          <%= f.password_field :password, {autocomplete: "current-password", class: "form-control", id: "floatingInput"} %>
+          <%= f.label :password, "Slaptažodis", for: "floatingInput" %>
         </div>
 
         <div class="field-remember-me-container">
@@ -31,15 +31,15 @@
             </div>
           <% end %>
         </div>
-      </div>
 
-      <div class="d-grid gap-2">
-        <%= f.submit "Prisijungti", class: "btn btn-primary" %>
-      </div>
-    <% end %>
+        <div class="d-grid gap-2">
+          <%= f.submit "Prisijungti", class: "btn btn-primary btn-lg" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<div class="shared-container">
-  <%= render "users/shared/links" %>
+  <div class="shared-container">
+    <%= render "users/shared/links" %>
+  </div>
 </div>

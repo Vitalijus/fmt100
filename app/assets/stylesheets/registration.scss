@@ -1,58 +1,5 @@
-.form-container {
-  max-width: 600px;
-  margin: 50px auto;
-  color: #31335a;
-  font-family: 'Geomanist', Arial, sans-serif;
-  background-color: #ffffff;
-
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-
-  -webkit-box-shadow: 0px 0px 3px 0px #A39B9B;
-  box-shadow: 0px 0px 3px 0px #A39B9B;
-  -moz-box-shadow: 0px 0px 3px 0px #A39B9B;
-}
-
-.form-header {
-  font-size: 25px;
-  text-align: center;
-  padding: 40px 20px;
-  background-color: white;
-  border-bottom: 1px solid #ced4da;
-
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-}
-
-.form-subheader {
-  font-size: 20px;
-  font-weight: 500;
-}
-
-.form-fields-container {
-  background-color: #ffffff;
-  padding: 20px;
-
-  -webkit-border-bottom-right-radius: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  -moz-border-radius-bottomright: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
-.form-fields {
+.registration-field {
   margin-bottom: 20px;
-  border-bottom: 1px solid #ced4da;
-}
-
-.form-fields .field {
-  padding-bottom: 20px;
 }
 
 .form-fields .field label {
