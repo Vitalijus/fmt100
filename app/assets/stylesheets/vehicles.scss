@@ -16,11 +16,21 @@
   margin: 50px auto;
 }
 
+.vehicle-list-container.my-orders {
+  background-color: #ffffff;
+  padding: 20px;
+}
 .vehicle-list-header {
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 40px;
 }
+
+.vehicle-list-header.my-orders {
+  margin-top: 40px;
+  border: 1px solid red;
+}
+
 
 .total-vehicles {
   display: inline-block;

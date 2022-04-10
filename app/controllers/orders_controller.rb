@@ -1,5 +1,10 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, except: %i[ new ]
   before_action :set_order, only: %i[ show edit update destroy ]
+
+  def my_orders
+    @my_orders = Order.where(user_id: current_user)
+  end
 
   # GET /orders or /orders.json
   def index
@@ -24,6 +29,7 @@ class OrdersController < ApplicationController
   def create
     @vehicle = Vehicle.find_by(id: params[:order][:vehicle_id])
     @order = @vehicle.orders.new(order_params)
+    @order = current_user.orders.new(order_params)
 
     respond_to do |format|
       if @order.save
@@ -66,6 +72,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:vehicle_id, :phone_number, :company_title, :name, :surname, :email_address)
+      params.require(:order).permit(:vehicle_id, :phone_number, :company_title, :name, :surname, :email_address, :user_id)
     end
 end

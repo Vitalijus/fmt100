@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :trackers
   resources :orders, only: [:new, :create]
   resources :vehicles
+
   get "my-vehicles", to: "vehicles#my_vehicles"
+  get "my-orders", to: "orders#my_orders"
 
   devise_for :users
 

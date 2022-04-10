@@ -1,0 +1,43 @@
+<div class="container-fluid my-page">
+  <div class="content-wrapper">
+    <div class="content-wrapper-header">
+      Užsakymai
+    </div>
+
+    <div class="content-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Gamintojas</th>
+            <th scope="col">Modelis</th>
+            <th scope="col">Auto. numeriai</th>
+            <th scope="col">Kategorija</th>
+            <th scope="col">Kėbulo tipas</th>
+            <th scope="col">Spalva</th>
+            <th scope="col">Metai</th>
+            <th scope="col">Rek. plotas</th>
+            <th scope="col">Rek. trukmė</th>
+            <th scope="col">Kaina</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @my_orders.each do |my_order| %>
+            <tr>
+              <td><%= my_order.vehicle.manufacturer %></td>
+              <td><%= my_order.vehicle.model %></td>
+              <td><%= my_order.vehicle.plate_number %></td>
+              <td><%= my_order.vehicle.category %></td>
+              <td><%= my_order.vehicle.body_style %></td>
+              <td><%= my_order.vehicle.color %></td>
+              <td><%= my_order.vehicle.year %></td>
+              <td><%= my_order.vehicle.ad_size %></td>
+              <td><%= my_order.vehicle.ad_duration %></td>
+              <td><%= price_helper(my_order.vehicle) %>€/km</td>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
