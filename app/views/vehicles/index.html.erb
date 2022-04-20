@@ -1,106 +1,119 @@
-<div class="search-container">
-  <%= search_form_for @q do |f| %>
-    <div class="search-fields-container">
-      <div class="row g-2">
-        <div class="col-md-6">
-          <div class="form-floating">
-            <%= f.select :city_cont, options_for_select(options_for_select_helper), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-            <label for="floatingSelectGrid">Miestas</label>
-          </div>
-        </div>
-
-        <div class="col-md-5">
-          <div class="form-floating">
-            <%= f.select :body_style_cont, options_for_select(["Sedan"]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-            <label for="floatingSelectGrid">Kėbulo tipas</label>
-          </div>
-        </div>
-
-        <div class="col-md d-grid gap-2">
-          <%= f.submit "Ieškoti", class: "btn btn-primary" %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
-
-<div class="vehicle-list-header">
-  <div class="total-vehicles">
-    Viso: <%= total_auto_helper(@q.result(distinct: true).count) %>
-  </div>
-
-  <span class="sort-by">
-    <div class="btn-group">
-      <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        Rikiuoti pagal
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end">
-        <%= sort_link(@q, :total_km, hide_indicator: true, default_order: :desc) do %>
-          <li><button class="dropdown-item" type="button">Viso km.</button></li>
-        <% end %>
-
-        <%= sort_link(@q, :last_four_weeks_km, hide_indicator: true, default_order: :desc) do %>
-          <li><button class="dropdown-item" type="button">Pask. 4sav. km.</button></li>
-        <% end %>
-
-        <%= sort_link(@q, :total_km, hide_indicator: true, default_order: :desc) do %>
-          <li><button class="dropdown-item" type="button">Kaina</button></li>
-        <% end %>
-
-        <%= sort_link(@q, :percentage, hide_indicator: true, default_order: :asc) do %>
-          <li><button class="dropdown-item" type="button">Procentai</button></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<% @vehicles.each do |vehicle| %>
-  <div class="vehicle-list-container">
-    <%= link_to vehicle do %>
-      <div class="card mb-3">
-        <div class="row g-0">
-          <div class="col-md-2">
-            <img src="https://s.auto.drom.ru/i24197/c/photos/fullsize/lexus/gs300/lexus_gs300_521056.jpg" class="img-fluid rounded-start" alt="...">
-          </div>
-
-          <div class="col-md-10">
-            <div class="card-body">
-              <div class="vehicle-list-item-title-container">
-                <div class="vehicle-list-item-title">
-                  <%= vehicle.manufacturer %> <%= vehicle.model %>
-
-                  <div class="vehicle-list-item-subtitle">
-                    <%= vehicle.percentage %>% laiko važinėja <%= vehicle.city %>
-                  </div>
-                </div>
-
-                <div class="vehicle-list-item-total-km">
-                  viso: <%= (vehicle.total_km / 1000.0).round(1) %>km
-                </div>
+<section>
+  <div class="section-container">
+    <div class="search-container">
+      <%= search_form_for @q do |f| %>
+        <div class="search-fields-container">
+          <div class="row g-2">
+            <div class="col-md-6">
+              <div class="form-floating">
+                <%= f.select :city_cont, options_for_select(options_for_select_helper), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+                <label for="floatingSelectGrid">Miestas</label>
               </div>
+            </div>
 
-              <div class="card-text">
-                <%= vehicle.category %> &#8226;
-                <%= vehicle.body_style %> &#8226;
-                <%= vehicle.color %> &#8226;
-                <%= vehicle.year %> &#8226;
-                <%= vehicle.city %> &#8226;
-                <%= price_helper(vehicle) %>€/km
-                <small class="text-muted">
-
-                </small>
+            <div class="col-md-5">
+              <div class="form-floating">
+                <%= f.select :body_style_cont, options_for_select(["Sedan"]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+                <label for="floatingSelectGrid">Kėbulo tipas</label>
               </div>
+            </div>
 
-              <div class="card-footer">
-                Paskutinės 4 savaitės: <%= (vehicle.last_four_weeks_km / 1000.0).round(1) %>km
-              </div>
+            <div class="col-md d-grid gap-2">
+              <%= f.submit "Ieškoti", class: "btn btn-primary" %>
             </div>
           </div>
         </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-container">
+    <div class="vehicle-list-header">
+      <div class="total-vehicles">
+        Viso: <%= total_auto_helper(@q.result(distinct: true).count) %>
+      </div>
+
+      <div class="sort-by">
+        <div class="btn-group">
+          <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Rikiuoti pagal
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end">
+            <%= sort_link(@q, :total_km, hide_indicator: true, default_order: :desc) do %>
+              <li><button class="dropdown-item" type="button">Viso km.</button></li>
+            <% end %>
+
+            <%= sort_link(@q, :last_four_weeks_km, hide_indicator: true, default_order: :desc) do %>
+              <li><button class="dropdown-item" type="button">Pask. 4sav. km.</button></li>
+            <% end %>
+
+            <%= sort_link(@q, :total_km, hide_indicator: true, default_order: :desc) do %>
+              <li><button class="dropdown-item" type="button">Kaina</button></li>
+            <% end %>
+
+            <%= sort_link(@q, :percentage, hide_indicator: true, default_order: :asc) do %>
+              <li><button class="dropdown-item" type="button">Procentai</button></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <% @vehicles.each do |vehicle| %>
+      <div class="vehicle-list-container">
+        <%= link_to vehicle do %>
+          <div class="card mb-3">
+            <div class="row g-0">
+              <div class="col-md-2">
+                <img src="https://s.auto.drom.ru/i24197/c/photos/fullsize/lexus/gs300/lexus_gs300_521056.jpg" class="img-fluid rounded-start" alt="...">
+              </div>
+
+              <div class="col-md-10">
+                <div class="card-body">
+                  <div class="vehicle-list-item-title-container">
+                    <div class="vehicle-list-item-title">
+                      <%= vehicle.manufacturer %> <%= vehicle.model %>
+
+                      <div class="vehicle-list-item-subtitle">
+                        <%= vehicle.percentage %>% laiko važinėja <%= vehicle.city %>
+                      </div>
+                    </div>
+
+                    <div class="vehicle-list-item-total-km">
+                      viso: <%= (vehicle.total_km / 1000.0).round(1) %>km
+                    </div>
+                  </div>
+
+                  <div class="card-text">
+                    <%= vehicle.category %> &#8226;
+                    <%= vehicle.body_style %> &#8226;
+                    <%= vehicle.color %> &#8226;
+                    <%= vehicle.year %> &#8226;
+                    <%= vehicle.city %> &#8226;
+                    <%= price_helper(vehicle) %>€/km
+                    <small class="text-muted">
+
+                    </small>
+                  </div>
+
+                  <div class="card-footer">
+                    Paskutinės 4 savaitės: <%= (vehicle.last_four_weeks_km / 1000.0).round(1) %>km
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
-<% end %>
+</section>
 
-<%= will_paginate @vehicles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+<section>
+  <div class="section-container">
+    <%= will_paginate @vehicles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+  </div>
+</section>

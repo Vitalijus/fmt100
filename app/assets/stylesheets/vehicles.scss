@@ -1,6 +1,28 @@
+/* index.html.erb */
+/* sort by nav */
+
+.vehicle-list-header {
+  max-width: 100%;
+  height: 35px;
+  margin: 40px 0 20px 0;
+}
+
+.total-vehicles {
+  display: inline-block;
+  width: calc(100% - 120px);
+  font-weight: 500;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.sort-by {
+  display: inline-block;
+}
+
+/* vehicles list */
+
 .vehicle-list-container {
-  max-width: 1200px;
-  margin: 20px auto;
+  max-width: 100%;
   color: #31335a;
 
   -webkit-border-radius: 3px;
@@ -20,47 +42,6 @@
   background-color: #ffffff;
   padding: 20px;
 }
-.vehicle-list-header {
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-top: 40px;
-}
-
-.vehicle-list-header.my-orders {
-  margin-top: 40px;
-  border: 1px solid red;
-}
-
-
-.total-vehicles {
-  display: inline-block;
-  font-weight: 500;
-  font-size: 14px;
-  vertical-align: middle;
-}
-
-.sort-by {
-  display: inline-block;
-  float: right;
-}
-
-ul.vehicle-list-items {
-  width: 100%;
-}
-
-li.vehicle-list-item {
-  width: 100%;
-  padding: 30px;
-  margin-bottom: 15px;
-  background-color: white;
-
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-}
 
 .vehicle-list-item-image {
   width: 120px;
@@ -68,13 +49,6 @@ li.vehicle-list-item {
   display: inline-block;
   vertical-align: top;
   background-color: #eef1f4;
-  margin-right: -4px;
-}
-
-.vehicle-list-item-container {
-  width: calc(100% - 120px);
-  vertical-align: top;
-  display: inline-block;
   margin-right: -4px;
 }
 
@@ -108,12 +82,10 @@ li.vehicle-list-item {
 .vehicle-list-item-subtitle {
   font-size: 14px;
   color: #989fb0;
-  // border: 1px solid red;
 }
 
 .card-text {
   margin-top: 10px;
-  // border: 1px solid red;
 }
 
 .card-footer {
@@ -125,7 +97,6 @@ li.vehicle-list-item {
   padding: 0;
   font-size: 14px;
   color: #989fb0;
-  // border: 1px solid red;
 }
 
 /* show.htm.erb */

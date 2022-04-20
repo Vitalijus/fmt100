@@ -1,108 +1,112 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-9">
-      <div class="card mb-3">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="" class="d-block w-100" alt="...">
+<section>
+  <div class="section-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9">
+          <div class="card mb-3">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="" class="d-block w-100" alt="...">
+                </div>
+
+                <div class="carousel-item">
+                  <img src="" class="d-block w-100" alt="...">
+                </div>
+
+                <div class="carousel-item">
+                  <img src="" class="d-block w-100" alt="...">
+                </div>
+              </div>
+
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
 
-            <div class="carousel-item">
-              <img src="" class="d-block w-100" alt="...">
-            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                <p>
+                  <strong>Manufacturer:</strong>
+                  <%= @vehicle.manufacturer %>
+                </p>
 
-            <div class="carousel-item">
-              <img src="" class="d-block w-100" alt="...">
+                <p>
+                  <strong>Model:</strong>
+                  <%= @vehicle.model %>
+                </p>
+
+                <p>
+                  <strong>Plate number:</strong>
+                  <%= @vehicle.plate_number %>
+                </p>
+
+                <p>
+                  <strong>Category:</strong>
+                  <%= @vehicle.category %>
+                </p>
+
+                <p>
+                  <strong>Body style:</strong>
+                  <%= @vehicle.body_style %>
+                </p>
+
+                <p>
+                  <strong>Color:</strong>
+                  <%= @vehicle.color %>
+                </p>
+
+                <p>
+                  <strong>Year:</strong>
+                  <%= @vehicle.year %>
+                </p>
+
+                <p>
+                  <strong>Ad size:</strong>
+                  <%= @vehicle.ad_size %>
+                </p>
+
+                <p>
+                  <strong>Ad duration:</strong>
+                  <%= @vehicle.ad_duration %>
+                </p>
+
+                <p>
+                  <strong>User:</strong>
+                  <%= @vehicle.user_id %>
+                </p>
+
+              </p>
+
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
-
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
         </div>
 
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            <p>
-              <strong>Manufacturer:</strong>
-              <%= @vehicle.manufacturer %>
-            </p>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Kaina</h5>
+              <div class="card-text">
+                <ul>
+                  <li>1km/€</li>
+                </ul>
+              </div>
 
-            <p>
-              <strong>Model:</strong>
-              <%= @vehicle.model %>
-            </p>
-
-            <p>
-              <strong>Plate number:</strong>
-              <%= @vehicle.plate_number %>
-            </p>
-
-            <p>
-              <strong>Category:</strong>
-              <%= @vehicle.category %>
-            </p>
-
-            <p>
-              <strong>Body style:</strong>
-              <%= @vehicle.body_style %>
-            </p>
-
-            <p>
-              <strong>Color:</strong>
-              <%= @vehicle.color %>
-            </p>
-
-            <p>
-              <strong>Year:</strong>
-              <%= @vehicle.year %>
-            </p>
-
-            <p>
-              <strong>Ad size:</strong>
-              <%= @vehicle.ad_size %>
-            </p>
-
-            <p>
-              <strong>Ad duration:</strong>
-              <%= @vehicle.ad_duration %>
-            </p>
-
-            <p>
-              <strong>User:</strong>
-              <%= @vehicle.user_id %>
-            </p>
-
-          </p>
-
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Kaina</h5>
-          <div class="card-text">
-            <ul>
-              <li>1km/€</li>
-            </ul>
-          </div>
-
-          <div class="d-grid gap-2">
-            <%= link_to 'Tęsti', new_order_path(vehicle_id: @vehicle.id), class: "btn btn-primary" %>
+              <div class="d-grid gap-2">
+                <%= link_to 'Tęsti', new_order_path(vehicle_id: @vehicle.id), class: "btn btn-primary" %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
