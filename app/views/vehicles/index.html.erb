@@ -86,6 +86,8 @@
                       viso: <%= (vehicle.total_km / 1000.0).round(1) %>km
                     </div>
                   </div>
+                  
+                  <%= order_status_helper(vehicle) %>
 
                   <div class="card-text">
                     <%= vehicle.category %> &#8226;

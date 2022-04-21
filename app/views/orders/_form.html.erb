@@ -11,6 +11,12 @@
     </div>
   <% end %>
 
+  <div class="sidebar">
+    <%= @vehicle.manufacturer %>
+    <%= price_helper(@vehicle) %>€/km
+    <%= @vehicle.percentage %>% laiko važinėja <%= @vehicle.city %>
+  </div>
+
   <%= form.hidden_field :vehicle_id %>
 
   <div class="order-field form-floating">
@@ -25,7 +31,7 @@
 
   <div class="order-field form-floating">
     <%= form.text_field :email_address, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :email_address, "Pašto adresas", for: "floatingInput" %>
+    <%= form.label :email_address, "El. pašto adresas", for: "floatingInput" %>
   </div>
 
   <div class="order-field form-floating">
@@ -36,6 +42,16 @@
   <div class="order-field form-floating">
     <%= form.text_field :company_title, {class: "form-control", id: "floatingInput"} %>
     <%= form.label :company_title, "Įmonės pav.", for: "floatingInput" %>
+  </div>
+
+  <div class="order-field form-floating">
+    <%= form.select :ad_size, options_for_select(ad_size_select_helper), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+    <%= form.label :ad_size, "Reklamos dydis", for: "floatingSelectGrid" %>
+  </div>
+
+  <div class="order-field form-floating">
+    <%= form.select :ad_duration, options_for_select(ad_duration_select_helper), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+    <%= form.label :ad_duration, "Reklamos trukmė", for: "floatingSelectGrid" %>
   </div>
 
   <div class="col-md d-grid gap-2">
