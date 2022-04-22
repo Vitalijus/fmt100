@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_21_111300) do
+ActiveRecord::Schema.define(version: 2022_04_21_141848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(version: 2022_04_21_111300) do
     t.string "status", default: "pending"
     t.string "ad_size"
     t.integer "ad_duration"
+    t.date "ad_start"
+    t.date "ad_end"
     t.index ["user_id"], name: "index_orders_on_user_id"
     t.index ["vehicle_id"], name: "index_orders_on_vehicle_id"
   end
