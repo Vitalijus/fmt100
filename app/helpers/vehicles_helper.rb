@@ -21,7 +21,7 @@ module VehiclesHelper
 
   def order_status_helper(vehicle)
     status = vehicle.orders.where(status: "active")
-    date = (status.first.updated_at + status.first.ad_duration.days).strftime("%d-%m-%Y") if status.first.present?
+    date = status.first.ad_end.nil? ? "šiandien" : status.first.ad_end if status.first.present?
 
     status.count == 1 ? "Laisvas nuo #{date}" : "Laisvas"
   end

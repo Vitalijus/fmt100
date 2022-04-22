@@ -16,10 +16,10 @@ module OrderWorkers
       orders = Order.all
 
       orders.each do |order|
-        if order.status == "active" && Date.today > order.ad_end
-          order.update(status: "deactivated")
-        else order.status == "active" && order.ad_start.nil? && order.ad_end.nil?
+        if order.status == "active" && order.ad_start.nil? && order.ad_end.nil?
           order.update(ad_start: Date.today, ad_end: Date.today + order.ad_duration.to_i)
+        elsif order.status == "active" && Date.today > order.ad_end
+          order.update(status: "deactivated")
         end
       end
     end
