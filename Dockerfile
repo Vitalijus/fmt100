@@ -5,6 +5,9 @@ FROM ruby:2.7-alpine
 # Set an environment variable to specify the Bundler version
 ENV BUNDLER_VERSION=2.2.15
 
+# Rollbar
+ENV POST_SERVER_ITEM_ACCESS_TOKEN=4be1dc1dbce0449e875c1557ef959959
+
 # Maintainer
 LABEL maintainer="Vitalijus Desukas <vitalij.desuk@gmail.com>"
 
@@ -58,5 +61,5 @@ RUN yarn install --check-files
 # Copy over the rest of the application code
 COPY . ./
 
-# Add a script to be executed every time the container starts.
-ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
+# Executed every time the container starts.
+CMD rails server -b 0.0.0.0

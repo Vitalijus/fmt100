@@ -83,10 +83,10 @@
                     </div>
 
                     <div class="vehicle-list-item-total-km">
-                      viso: <%= (vehicle.total_km / 1000.0).round(1) %>km
+                      viso: <%= vehicle.total_km %>km
                     </div>
                   </div>
-                  
+
                   <%= order_status_helper(vehicle) %>
 
                   <div class="card-text">
@@ -102,7 +102,7 @@
                   </div>
 
                   <div class="card-footer">
-                    Paskutinės 4 savaitės: <%= (vehicle.last_four_weeks_km / 1000.0).round(1) %>km
+                    Paskutinės 4 savaitės: <%= vehicle.last_four_weeks_km %>km
                   </div>
                 </div>
               </div>

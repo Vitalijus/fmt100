@@ -2,12 +2,8 @@ version: '3.9'
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    depends_on:
-      - database
-      - redis
+    build: .
+    depends_on: [databe, redis]
     ports:
       - "3000:3000"
     volumes:
@@ -35,13 +31,8 @@ services:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
 
   sidekiq:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    depends_on:
-      - app
-      - database
-      - redis
+    build: .
+    depends_on: [app, database, redis]
     volumes:
       - .:/app
       - gem_cache:/usr/local/bundle/gems
@@ -49,7 +40,13 @@ services:
     env_file: .env
     environment:
       RAILS_ENV: development
-    entrypoint: ./entrypoints/sidekiq-entrypoint.sh
+    command: sidekiq
+
+  tcp:
+    build: .
+    depends_on: [app, database, redis, sidekiq]
+    env_file: .env
+    command: rake socketing:start
 
 volumes:
   gem_cache:

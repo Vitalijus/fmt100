@@ -23,7 +23,7 @@ Run below command to create container for fmt100, DB, Redis and Sidekiq. -d flag
 docker-compose up -d
 ```
 
-Stopping and removing your containers with:
+Stops containers and removes containers, networks, volumes, and images created by up. After this command would need to create/reset DB, all data would be lost.
 
 ```sh
 docker-compose down
@@ -44,17 +44,17 @@ docker-compose ps
 Run migrations on it with the following:
 
 ```sh
-docker-compose exec app bundle exec rake db:migrate
+docker-compose exec app rake db:migrate
 ```
 
 Open the Rails console on the app container:
 
 ```sh
-docker-compose exec app bundle exec rails console
+docker-compose exec app rails console
 ```
 
 Resets your database using your migrations for the current environment. It does this by running the db:drop, db:create, db:migrate tasks. Below command will erase your current DB.
 
 ```sh
-docker-compose exec app bundle exec rake db:reset
+docker-compose exec app rake db:reset
 ```
