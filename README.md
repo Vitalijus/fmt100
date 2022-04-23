@@ -1,24 +1,60 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+These instructions will get you a copy of the project up and running on your
+local machine for development and testing purposes.
 
-* System dependencies
+# Prerequisites
 
-* Configuration
+- Install [Ruby](https://www.ruby-lang.org/en/downloads/) 2.6.7.
+- Install [Docker](https://www.docker.com/).
+- Clone https://github.com/Vitalijus/fmt100.git
+- ...
 
-* Database creation
+# Docker commands
 
-* Database initialization
+With your services running, you can visit localhost:3000 or http://your_server_ip:3000 in the browser.
 
-* How to run the test suite
+Run below command to create container for fmt100, DB, Redis and Sidekiq. -d flag run the containers in the background.
 
-* Services (job queues, cache servers, search engines, etc.)
+```sh
+docker-compose up -d
+```
 
-* Deployment instructions
+Stopping and removing your containers with:
 
-* ...
+```sh
+docker-compose down
+```
+
+Get more detailed information about the startup processes by displaying the log output:
+
+```sh
+docker-compose logs
+```
+
+Check the status of your containers with:
+
+```sh
+docker-compose ps
+```
+
+Run migrations on it with the following:
+
+```sh
+docker-compose exec app bundle exec rake db:migrate
+```
+
+Open the Rails console on the app container:
+
+```sh
+docker-compose exec app bundle exec rails console
+```
+
+Resets your database using your migrations for the current environment. It does this by running the db:drop, db:create, db:migrate tasks. Below command will erase your current DB.
+
+```sh
+docker-compose exec app bundle exec rake db:reset
+```
