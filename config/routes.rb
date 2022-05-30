@@ -19,4 +19,7 @@ Rails.application.routes.draw do
   get "contacts", to: "pages#contacts"
 
   root to: "vehicles#index"
+
+  # Redirect all unknown routes to root_url / keep at the bottom of this file
+  get '*path' => redirect('/')
 end
