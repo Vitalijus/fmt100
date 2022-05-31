@@ -48,6 +48,9 @@ gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
 gem 'sidekiq-limit_fetch'
 
+# GQL UI
+gem 'graphiql-rails'
+
 # Jquery library
 gem 'jquery-rails'
 # Jquery UI
@@ -81,8 +84,6 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  # GQL dashboar
-  gem 'graphiql-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
