@@ -1,10 +1,6 @@
 GEM
-  remote: https://rails-assets.org/
-  specs:
-    rails-assets-tether (2.0.0)
-
-GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actioncable (6.1.6)
       actionpack (= 6.1.6)
@@ -190,6 +186,7 @@ GEM
       bundler (>= 1.15.0)
       railties (= 6.1.6)
       sprockets-rails (>= 2.0.0)
+    rails-assets-tether (2.0.0)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -367,7 +364,7 @@ DEPENDENCIES
   will_paginate-bootstrap-style
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.7.6p219
 
 BUNDLED WITH
    2.2.15
