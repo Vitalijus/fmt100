@@ -106,6 +106,12 @@ GEM
     geocoder (1.8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    graphiql-rails (1.8.0)
+      railties
+      sprockets-rails
+    graphql (1.13.12)
+    graphql-cache (0.6.0)
+      graphql (~> 1, > 1.8)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -334,6 +340,9 @@ DEPENDENCIES
   devise
   dotenv-rails
   geocoder
+  graphiql-rails
+  graphql
+  graphql-cache
   jbuilder (~> 2.7)
   jquery-rails
   jquery-ui-rails
