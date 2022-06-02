@@ -4,6 +4,7 @@ module VehicleWorkers
     sidekiq_options retry: 3
 
     # VehicleWorkers::UpdateVehiclePercentageWorker.new.perform
+    # Worker is used to calc what percentage vehicle runs within city
     def perform
       update_vehicle_percentage
     end

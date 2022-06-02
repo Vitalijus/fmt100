@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_02_182026) do
+ActiveRecord::Schema.define(version: 2022_06_02_201700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2022_06_02_182026) do
     t.uuid "vehicle_id", null: false
     t.string "city"
     t.boolean "within_radius"
+    t.decimal "distance_price", precision: 8, scale: 5
     t.index ["vehicle_id"], name: "index_odometers_on_vehicle_id"
   end
 
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 2022_06_02_182026) do
     t.integer "last_four_weeks_km"
     t.float "percentage"
     t.boolean "published", default: false
+    t.decimal "km_price", precision: 8, scale: 2
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 

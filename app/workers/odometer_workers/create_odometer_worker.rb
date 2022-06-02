@@ -13,12 +13,24 @@ module OdometerWorkers
       if distances.present?
         distance_and_duration_above_zero = distances[:rows].first[:elements].first[:distance][:value] > 0 &&
                                            distances[:rows].first[:elements].first[:duration][:value] > 0
-
-        Odometer.create(build_odometer(distances, odometer_payload)) if distance_and_duration_above_zero
+                                  
+        Odometer.create(build_odometer(distances, odometer_payload, distance_price(distances, odometer_payload))) if distance_and_duration_above_zero
       end
     end
 
-    def build_odometer(distances, odometer_payload)
+    def distance_price(distances, odometer_payload)
+      vehicle = Vehicle.find(odometer_payload[:vehicle_id])
+      calc_distance_price(distances, vehicle)
+    end
+
+    def calc_distance_price(distances, vehicle)
+      meters = distances[:rows].first[:elements].first[:distance][:value]
+      price = vehicle.km_price
+
+      (meters.to_d / 1000.to_d) * price
+    end
+
+    def build_odometer(distances, odometer_payload, distance_price)
       {
         city: odometer_payload[:city],
         within_radius: odometer_payload[:within_radius],
@@ -26,7 +38,8 @@ module OdometerWorkers
         destination_address: distances[:destination_addresses].first,
         origin_address: distances[:origin_addresses].first,
         distance: distances[:rows].first[:elements].first[:distance][:value],
-        duration: distances[:rows].first[:elements].first[:duration][:value]
+        duration: distances[:rows].first[:elements].first[:duration][:value],
+        distance_price: distance_price
       }
     end
   end

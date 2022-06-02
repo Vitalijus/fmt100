@@ -28,55 +28,55 @@ module VehiclesHelper
 
   # Pricing
 
-  def price_helper(vehicle)
-    # binding.pry
-    vehicle = Vehicle.find_by!(id: vehicle)
-
-    # percentage_calc = 100 * percentage(vehicle.percentage)
-    # category_calc = 100 * category(vehicle.category)
-
-    # binding.pry
-    # (percentage_calc.to_f + category_calc.to_f) / 200.0
-    vehicle.percentage
-  end
-
-
-  # Represents percentage field in Vehicle
-  def percentage(percentage)
-    return 0.5 if percentage.nil?
-
-    pricing = build_percentage_pricing.map do |pricing|
-      pricing[:km_price] if pricing[:percentage] > percentage
-    end
-
-    pricing.compact.first
-  end
-
-  # Represents category field in Vehicle
-  def category(category)
-    return 0.3 if category.nil?
-
-    pricing = build_category_pricing.map do |pricing|
-      pricing[:km_price] if pricing[:category] == category
-    end
-
-    # binding.pry
-    pricing.compact.first.nil? ? 0.3 : pricing.compact.first
-  end
-
-  def build_percentage_pricing
-    [
-      { percentage: 50, km_price: 0.5 },
-      { percentage: 75, km_price: 0.75 },
-      { percentage: 100, km_price: 1 }
-    ]
-  end
-
-  def build_category_pricing
-    [
-      { category: "car", km_price: 0.3 },
-      { category: "bus", km_price: 0.9 },
-      { category: "lorry", km_price: 1 }
-    ]
-  end
+  # def price_helper(vehicle)
+  #   # binding.pry
+  #   vehicle = Vehicle.find_by!(id: vehicle)
+  #
+  #   # percentage_calc = 100 * percentage(vehicle.percentage)
+  #   # category_calc = 100 * category(vehicle.category)
+  #
+  #   # binding.pry
+  #   # (percentage_calc.to_f + category_calc.to_f) / 200.0
+  #   vehicle.percentage
+  # end
+  #
+  #
+  # # Represents percentage field in Vehicle
+  # def percentage(percentage)
+  #   return 0.5 if percentage.nil?
+  #
+  #   pricing = build_percentage_pricing.map do |pricing|
+  #     pricing[:km_price] if pricing[:percentage] > percentage
+  #   end
+  #
+  #   pricing.compact.first
+  # end
+  #
+  # # Represents category field in Vehicle
+  # def category(category)
+  #   return 0.3 if category.nil?
+  #
+  #   pricing = build_category_pricing.map do |pricing|
+  #     pricing[:km_price] if pricing[:category] == category
+  #   end
+  #
+  #   # binding.pry
+  #   pricing.compact.first.nil? ? 0.3 : pricing.compact.first
+  # end
+  #
+  # def build_percentage_pricing
+  #   [
+  #     { percentage: 50, km_price: 0.5 },
+  #     { percentage: 75, km_price: 0.75 },
+  #     { percentage: 100, km_price: 1 }
+  #   ]
+  # end
+  #
+  # def build_category_pricing
+  #   [
+  #     { category: "car", km_price: 0.3 },
+  #     { category: "bus", km_price: 0.9 },
+  #     { category: "lorry", km_price: 1 }
+  #   ]
+  # end
 end

@@ -34,7 +34,7 @@
               <td><%= my_vehicle.year %></td>
               <td><%= my_vehicle.ad_size %></td>
               <td><%= my_vehicle.ad_duration %></td>
-              <td><%= price_helper(my_vehicle) %>€/km</td>
+              <td><%= my_vehicle.km_price %>€/km</td>
               <td><%= my_vehicle.orders.count %></td>
               <td><%= my_vehicle.published ? "Taip" : "Ne" %></td>
               <td><%= link_to 'Atidaryti', my_vehicle %></td>

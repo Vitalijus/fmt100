@@ -32,8 +32,7 @@
               <td><%= my_order.vehicle.year %></td>
               <td><%= my_order.vehicle.ad_size %></td>
               <td><%= my_order.vehicle.ad_duration %></td>
-              <td><%= price_helper(my_order.vehicle) %>€/km</td>
-
+              <td><%= my_order.vehicle.km_price %>€/km</td>
             </tr>
           <% end %>
         </tbody>
