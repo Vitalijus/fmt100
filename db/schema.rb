@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_21_141848) do
+ActiveRecord::Schema.define(version: 2022_06_02_182026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -47,21 +47,6 @@ ActiveRecord::Schema.define(version: 2022_04_21_141848) do
     t.date "ad_end"
     t.index ["user_id"], name: "index_orders_on_user_id"
     t.index ["vehicle_id"], name: "index_orders_on_vehicle_id"
-  end
-
-  create_table "trackers", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.float "latitude"
-    t.float "longitude"
-    t.string "speed"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.uuid "vehicle_id", null: false
-    t.boolean "within_radius"
-    t.string "city"
-    t.integer "radius_size"
-    t.float "radius_longitude"
-    t.float "radius_latitude"
-    t.index ["vehicle_id"], name: "index_trackers_on_vehicle_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -101,6 +86,5 @@ ActiveRecord::Schema.define(version: 2022_04_21_141848) do
   add_foreign_key "odometers", "vehicles"
   add_foreign_key "orders", "users"
   add_foreign_key "orders", "vehicles"
-  add_foreign_key "trackers", "vehicles"
   add_foreign_key "vehicles", "users"
 end

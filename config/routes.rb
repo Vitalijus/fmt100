@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   post "/graphql", to: "graphql#execute"
 
   # Resources
-  resources :trackers
   resources :orders, only: [:new, :create]
   resources :vehicles
 

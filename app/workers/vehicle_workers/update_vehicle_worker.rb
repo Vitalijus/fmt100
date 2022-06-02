@@ -3,6 +3,7 @@ module VehicleWorkers
     include Sidekiq::Worker
     sidekiq_options retry: 3
 
+    # Updating city, total_km, last_four_weeks_km every few min.
     def perform
       update_vehicle
     end
