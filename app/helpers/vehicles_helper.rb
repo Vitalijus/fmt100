@@ -28,14 +28,16 @@ module VehiclesHelper
 
   # Pricing
 
-  def price_helper(v)
-    vehicle = Vehicle.find_by!(id: v)
+  def price_helper(vehicle)
+    # binding.pry
+    vehicle = Vehicle.find_by!(id: vehicle)
 
-    percentage_calc = 100 * percentage(vehicle.percentage)
-    category_calc = 100 * category(vehicle.category)
+    # percentage_calc = 100 * percentage(vehicle.percentage)
+    # category_calc = 100 * category(vehicle.category)
 
     # binding.pry
-    (percentage_calc.to_f + category_calc.to_f) / 200
+    # (percentage_calc.to_f + category_calc.to_f) / 200.0
+    vehicle.percentage
   end
 
 
