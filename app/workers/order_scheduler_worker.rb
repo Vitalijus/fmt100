@@ -1,6 +1,6 @@
 require "sidekiq-scheduler"
 
-class VehicleSchedulerWorker
+class OrderSchedulerWorker
   include Sidekiq::Worker
 
   def perform
