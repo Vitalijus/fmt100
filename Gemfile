@@ -48,6 +48,8 @@ gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
 gem 'sidekiq-limit_fetch'
 
+# Client library
+gem "http"
 # GQL UI
 gem 'graphiql-rails'
 

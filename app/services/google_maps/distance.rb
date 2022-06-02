@@ -1,21 +1,19 @@
 module GoogleMaps
   class Distance < Base
 
-    def initialize(time_ago)
-      @time_ago = time_ago
+    def initialize(minutes_ago)
+      @minutes_ago = minutes_ago
     end
 
     def distance
-      tracker = Tracker.where("created_at > ?", @time_ago)
-
-      if tracker.present?
-        coordinates_list(tracker).each do |coordinate_list|
+      if trackers_list.present?
+        coordinates_list(trackers_list).each do |coordinate_list|
           url_payload = url_payload(coordinate_list)
           odometer_payload = odometer_payload(coordinate_list)
           distances = call(url_payload[:origins], url_payload[:destinations])
 
           if distances.present? && distances["rows"][0]["elements"][0]["status"] == "OK" && distances["status"] == "OK"
-            OdometerWorkers::CreateOdometerWorker.perform_async(distances, odometer_payload)
+            OdometerWorkers::CreateOdometerWorker.new.perform(distances, odometer_payload)
           else
             Rails.logger.error "GoogleMaps distance matrix: #{distances}"
             Rollbar.log("error", "GoogleMaps distance matrix: #{distances}")
@@ -24,16 +22,25 @@ module GoogleMaps
       end
     end
 
+    # Get trackers by making a call to EC2 server Trackers app
+    def trackers_list
+      trackers = Trackers::TrackersByMinutesAgo.new(@minutes_ago)
+      trackers.build_response
+
+      Rollbar.log("error", "#{trackers.errors} | GoogleMaps::Distance") if trackers.errors.present?
+      trackers.result
+    end
+
     # Slice Tracker coordinates and return as [ {}, {} ]
-    def coordinates_list(tracker)
-      tracker.each_slice(4).to_a.map do |coordinates|
+    def coordinates_list(trackers)
+      trackers.each_slice(4).to_a.map do |coordinates|
         coordinates.map do |coordinate|
           {
-            latitude: coordinate[:latitude],
-            longitude: coordinate[:longitude],
-            vehicle_id: coordinate[:vehicle_id],
-            city: coordinate[:city],
-            within_radius: coordinate[:within_radius]
+            latitude: coordinate["latitude"],
+            longitude: coordinate["longitude"],
+            vehicle_id: coordinate["vehicleId"],
+            city: coordinate["city"],
+            within_radius: coordinate["withinRadius"]
           }
         end
       end
