@@ -1,5 +1,5 @@
 class Trackers::Base
   def base_address
-    "http://18.237.252.64:3000/graphql"
+    "http://35.85.66.28:3000/graphql"
   end
 end
