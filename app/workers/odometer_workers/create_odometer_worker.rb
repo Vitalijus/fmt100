@@ -11,10 +11,7 @@ module OdometerWorkers
       odometer_payload = odometer_payload.with_indifferent_access
 
       if distances.present?
-        distance_and_duration_above_zero = distances[:rows].first[:elements].first[:distance][:value] > 0 &&
-                                           distances[:rows].first[:elements].first[:duration][:value] > 0
-                                  
-        Odometer.create(build_odometer(distances, odometer_payload, distance_price(distances, odometer_payload))) if distance_and_duration_above_zero
+        Odometer.create(build_odometer(distances, odometer_payload, distance_price(distances, odometer_payload))) if distance_conditional(distances)
       end
     end
 
@@ -28,6 +25,14 @@ module OdometerWorkers
       price = vehicle.km_price
 
       (meters.to_d / 1000.to_d) * price
+    end
+
+    # Check that distance value is above 0 and below 1200 meters.
+    # Meters check is added to improve vehicle odometer precision.
+    def distance_conditional(distances)
+      distances[:rows].first[:elements].first[:distance][:value] > 0 &&
+        distances[:rows].first[:elements].first[:distance][:value] < 1200 &&
+        distances[:rows].first[:elements].first[:duration][:value] > 0
     end
 
     def build_odometer(distances, odometer_payload, distance_price)
