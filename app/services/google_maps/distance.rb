@@ -33,7 +33,7 @@ module GoogleMaps
 
     # Slice Tracker coordinates and return as [ {}, {} ]
     def coordinates_list(trackers)
-      trackers.each_slice(8).to_a.map do |coordinates|
+      trackers.each_slice(4).to_a.map do |coordinates|
         coordinates.map do |coordinate|
           {
             latitude: coordinate["latitude"],
