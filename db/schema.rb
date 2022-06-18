@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_18_145909) do
+ActiveRecord::Schema.define(version: 2022_06_18_162247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 2022_06_18_145909) do
     t.float "percentage"
     t.boolean "published", default: false
     t.decimal "km_price", precision: 8, scale: 2
-    t.json "cities"
-    t.json "elderships"
+    t.jsonb "cities"
+    t.jsonb "elderships"
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 

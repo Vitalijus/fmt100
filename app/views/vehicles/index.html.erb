@@ -78,7 +78,7 @@
                       <%= vehicle.manufacturer %> <%= vehicle.model %>
 
                       <div class="vehicle-list-item-subtitle">
-                        <%= vehicle.percentage %>% laiko važinėja <%= vehicle.city %>
+                        <%= vehicle.cities.max_by{|city| city[:percentage]} %>
                       </div>
                     </div>
 
@@ -140,7 +140,7 @@
                   </ul>
 
                   <div class="card-footer">
-                    Paskutinės 4 savaitės: <%= vehicle.last_four_weeks_km %>km <%= order_status_helper(vehicle) %>
+                    <%= order_status_helper(vehicle) %>
                   </div>
                 </div>
               </div>
