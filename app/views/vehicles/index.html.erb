@@ -83,26 +83,64 @@
                     </div>
 
                     <div class="vehicle-list-item-total-km">
-                      viso: <%= vehicle.total_km %>km
+                      <%= km_converter_helper(vehicle.total_km) %>km
                     </div>
                   </div>
 
-                  <%= order_status_helper(vehicle) %>
+                  <ul class="card-text">
+                    <li>
+                      <div class="card-text-value">
+                        <%= vehicle.category %>
+                      </div>
 
-                  <div class="card-text">
-                    <%= vehicle.category %> &#8226;
-                    <%= vehicle.body_style %> &#8226;
-                    <%= vehicle.color %> &#8226;
-                    <%= vehicle.year %> &#8226;
-                    <%= vehicle.city %> &#8226;
-                    <%= vehicle.km_price %>€/km
-                    <small class="text-muted">
+                      <div class="card-text-title">
+                        Kategorija
+                      </div>
+                    </li>
 
-                    </small>
-                  </div>
+                    <li>
+                      <div class="card-text-value">
+                        <%= vehicle.body_style %>
+                      </div>
+
+                      <div class="card-text-title">
+                        Kėbulas
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="card-text-value">
+                        <%= vehicle.color %>
+                      </div>
+
+                      <div class="card-text-title">
+                        Spalva
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="card-text-value">
+                        <%= vehicle.year %>
+                      </div>
+
+                      <div class="card-text-title">
+                        Metai
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="card-text-value">
+                        €<%= vehicle.km_price %>
+                      </div>
+
+                      <div class="card-text-title">
+                        €/km
+                      </div>
+                    </li>
+                  </ul>
 
                   <div class="card-footer">
-                    Paskutinės 4 savaitės: <%= vehicle.last_four_weeks_km %>km
+                    Paskutinės 4 savaitės: <%= vehicle.last_four_weeks_km %>km <%= order_status_helper(vehicle) %>
                   </div>
                 </div>
               </div>

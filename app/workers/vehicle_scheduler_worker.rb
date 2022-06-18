@@ -5,6 +5,5 @@ class VehicleSchedulerWorker
 
   def perform
     VehicleWorkers::UpdateVehicleWorker.perform_async
-    VehicleWorkers::UpdateVehiclePercentageWorker.perform_async
   end
 end

@@ -27,33 +27,35 @@
   </div>
 
   <div class="vehicle-field form-floating">
-    <%= form.text_field :category, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :category, "Kategorija*", for: "floatingInput" %>
+    <%= form.select :category, options_for_select(["Lengvasis"]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+    <label for="floatingSelectGrid">Kategorija*</label>
   </div>
 
   <div class="vehicle-field form-floating">
-    <%= form.text_field :body_style, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :body_style, "Kėbulo tipas*", for: "floatingInput" %>
+    <%= form.select :year, options_for_select(Date.today.year.downto(2010)), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+    <label for="floatingSelectGrid">Pagaminimo metai*</label>
   </div>
 
   <div class="vehicle-field form-floating">
-    <%= form.text_field :color, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :color, "Spalva*", for: "floatingInput" %>
+    <%= form.select :body_style, options_for_select(["Sedanas", "Hečbekas", "Universalas", "Vienatūris", "Kupė", "Komercinis", "Kabrioletas", "Limuzinas", "Pikapas", "Kita"]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+    <label for="floatingSelectGrid">Kėbulo tipas*</label>
   </div>
 
   <div class="vehicle-field form-floating">
-    <%= form.number_field :year, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :year, "Metai*", for: "floatingInput" %>
+    <%= form.select :color, options_for_select(["Balta/Perlas", "Geltona/Auksas", "Juoda", "Mėlyna/Žydra", "Oranžinė", "Pilka", "Sidabrinė", "Raudona", "Ruda/Rusva", "Žalia", "Kita"]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+    <label for="floatingSelectGrid">Spalva*</label>
   </div>
 
   <div class="vehicle-field form-floating">
-    <%= form.text_field :ad_size, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :ad_size, "Reklamos plotas*", for: "floatingInput" %>
+    <%= form.select :ad_size, options_for_select([["Pilnas", 1], ["Pusė mašinos", 2], ["Dalinis", 3]]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+    <label for="floatingSelectGrid">Reklamos plotas*</label>
+    <div class="form-text">We'll never share your email with anyone else.</div>
   </div>
 
   <div class="vehicle-field form-floating">
-    <%= form.number_field :ad_duration, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :ad_duration, "Reklamos trukmė*", for: "floatingInput" %>
+    <%= form.select :ad_duration, options_for_select([["iki 3mėn.", 1], ["iki 6mėn.", 6], ["iki 12mėn.", 12]]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+    <label for="floatingSelectGrid">Reklamos trukmė*</label>
+    <div class="form-text">We'll never share your email with anyone else.</div>
   </div>
 
   <div class="col-md d-grid gap-2">

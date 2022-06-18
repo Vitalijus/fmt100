@@ -55,10 +55,12 @@
 .card-body {
   position: relative;
   height: 100%;
+  // border: 1px solid red;
 }
 
 .vehicle-list-item-title-container {
   width: 100%;
+  // border: 1px solid red;
 }
 
 .vehicle-list-item-title {
@@ -67,6 +69,7 @@
   margin-right: -4px;
   vertical-align: middle;
   font-size: 20px;
+  // border: 1px solid red;
 }
 
 .vehicle-list-item-total-km {
@@ -77,15 +80,38 @@
   margin-right: -4px;
   font-size: 16px;
   color: #545f7c;
+  // border: 1px solid red;
 }
 
 .vehicle-list-item-subtitle {
   font-size: 14px;
   color: #989fb0;
+  // border: 1px solid red;
 }
 
-.card-text {
-  margin-top: 10px;
+ul.card-text {
+  margin-top: 5px;
+  // border: 1px solid red;
+}
+
+ul.card-text li {
+  // width: 19%;
+  display: inline-block;
+  padding: 0 10px;
+  // border: 1px solid red;
+}
+
+.card-text-value {
+  // display: inline;
+  text-align: center;
+  // border: 1px solid red;
+}
+
+.card-text-title {
+  font-size: 10px;
+  text-align: center;
+  font-weight: 500;
+  // border: 1px solid red;
 }
 
 .card-footer {

@@ -5,7 +5,7 @@
 
 :schedule:
   vehicle_scheduler_worker:
-    cron: '0 */5 * * * *'
+    cron: '0 */2 * * * *'
     class: VehicleSchedulerWorker
     enabled: true
   order_scheduler_worker:
