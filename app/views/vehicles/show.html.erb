@@ -33,6 +33,24 @@
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">
+                <div>
+                  <strong>Miestai:</strong> <br>
+                  <% @vehicle.cities.each do |city|%>
+                    <%= city["city"] || city["town"] || "Užmiestis" %>
+                    <%= city["percentage"].round(1) %>% <br>
+                  <% end %>
+                </div>
+
+                <br>
+
+                <div>
+                  <strong>Vietoves:</strong><br>
+                  <% @vehicle.elderships.each do |eldership| %>
+                    <%= eldership["eldership"] || "Užmiestis" %>
+                    <%= eldership["percentage"].round(1) %>% <br>
+                  <% end %>
+                </div>
+
                 <p>
                   <strong>Manufacturer:</strong>
                   <%= @vehicle.manufacturer %>
