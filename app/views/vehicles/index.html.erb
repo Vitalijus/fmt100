@@ -78,7 +78,8 @@
                       <%= vehicle.manufacturer %> <%= vehicle.model %>
 
                       <div class="vehicle-list-item-subtitle">
-                        <%= vehicle.cities.max_by{|city| city[:percentage]} %>
+                        <%= vehicle.year %> metų <%= vehicle.color %> <%= vehicle.body_style %>
+                         €<%= vehicle.km_price %> <%= vehicle.category %>
                       </div>
                     </div>
 
@@ -90,53 +91,33 @@
                   <ul class="card-text">
                     <li>
                       <div class="card-text-value">
-                        <%= vehicle.category %>
-                      </div>
-
-                      <div class="card-text-title">
-                        Kategorija
+                        Miestas:
                       </div>
                     </li>
 
+                    <% vehicle.cities.first(3).each do |city| %>
+                      <li>
+                        <div class="card-text-value">
+                          <%= city["city"] || city["town"] || "Užmiestis" %> <%= city["percentage"].round(1) %>%
+                        </div>
+                      </li>
+                    <% end %>
+                  </ul>
+
+                  <ul class="card-text">
                     <li>
                       <div class="card-text-value">
-                        <%= vehicle.body_style %>
-                      </div>
-
-                      <div class="card-text-title">
-                        Kėbulas
+                        Vietovė:
                       </div>
                     </li>
 
-                    <li>
-                      <div class="card-text-value">
-                        <%= vehicle.color %>
-                      </div>
-
-                      <div class="card-text-title">
-                        Spalva
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="card-text-value">
-                        <%= vehicle.year %>
-                      </div>
-
-                      <div class="card-text-title">
-                        Metai
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="card-text-value">
-                        €<%= vehicle.km_price %>
-                      </div>
-
-                      <div class="card-text-title">
-                        €/km
-                      </div>
-                    </li>
+                    <% vehicle.elderships.first(3).each do |eldership| %>
+                      <li>
+                        <div class="card-text-value">
+                          <%= eldership["eldership"] || "Užmiestis" %> <%= eldership["percentage"].round(1) %>%
+                        </div>
+                      </li>
+                    <% end %>
                   </ul>
 
                   <div class="card-footer">

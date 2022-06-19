@@ -86,6 +86,7 @@
 .vehicle-list-item-subtitle {
   font-size: 14px;
   color: #989fb0;
+  margin-top: -3px;
   // border: 1px solid red;
 }
 
@@ -97,7 +98,9 @@ ul.card-text {
 ul.card-text li {
   // width: 19%;
   display: inline-block;
-  padding: 0 10px;
+  padding: 0 10px 0 0;
+  margin: 0;
+  text-align: center;
   // border: 1px solid red;
 }
 
@@ -107,12 +110,12 @@ ul.card-text li {
   // border: 1px solid red;
 }
 
-.card-text-title {
-  font-size: 10px;
-  text-align: center;
-  font-weight: 500;
-  // border: 1px solid red;
-}
+// .card-text-title {
+//   font-size: 10px;
+//   text-align: center;
+//   font-weight: 500;
+//   // border: 1px solid red;
+// }
 
 .card-footer {
   width: calc(100% - 30px);
