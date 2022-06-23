@@ -4,9 +4,13 @@
 # '0 0 * * *' Runs at midnight
 
 :schedule:
-  vehicle_scheduler_worker:
+  vehicle_cities_elderships_scheduler_worker:
     cron: '0 */2 * * * *'
-    class: VehicleSchedulerWorker
+    class: VehicleCitiesEldershipsSchedulerWorker
+    enabled: true
+  vehicle_total_km_scheduler_worker:
+    cron: '0 */5 * * * *'
+    class: VehicleTotalKmSchedulerWorker
     enabled: true
   order_scheduler_worker:
     cron: '0 0 * * *'

@@ -34,13 +34,12 @@ class Trackers::StatsByVehicleId < Trackers::Base
       cities = stat["cities"].sort_by { |city| city["percentage"] }.reverse
       elderships = stat["elderships"].sort_by { |eldership| eldership["percentage"] }.reverse
 
-      vehicle.update(build_vehicle(stat, cities, elderships))
+      vehicle.update(build_vehicle(cities, elderships))
     end
   end
 
-  def build_vehicle(stat, cities, elderships)
+  def build_vehicle(cities, elderships)
     {
-      total_km: stat["totalVehicleOdometer"],
       cities: cities,
       elderships: elderships
     }
