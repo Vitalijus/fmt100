@@ -5,7 +5,7 @@ class Vehicle < ApplicationRecord
   has_many :orders, dependent: :destroy
 
   # callbacks
-  after_create :vehicle_km_price
+  after_create :vehicle_km_price, :default_cities_and_elderships
 
   # validations
   validates :manufacturer, :model, :plate_number, :category, :body_style,
@@ -14,5 +14,9 @@ class Vehicle < ApplicationRecord
 
   def vehicle_km_price
     self.update(km_price: 0.02)
+  end
+
+  def default_cities_and_elderships
+    self.update(cities: [], elderships: [])
   end
 end

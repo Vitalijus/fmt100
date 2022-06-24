@@ -1,128 +1,169 @@
 <section>
   <div class="section-container">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-9">
-          <div class="card mb-3">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1619019187/vehicle_image/Vitalijus%20Desukas%20c77859e4-14ce-40ec-b771-4ea2d924a955.jpg" class="d-block w-100" alt="...">
-                </div>
+    <div class="vehicle-container">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1619019187/vehicle_image/Vitalijus%20Desukas%20c77859e4-14ce-40ec-b771-4ea2d924a955.jpg" class="d-block w-100" alt="...">
+          </div>
 
-                <div class="carousel-item">
-                  <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1618681343/vehicle_image/Vitalijus%20Desukas%20hfg667.jpg" class="d-block w-100" alt="...">
-                </div>
+          <div class="carousel-item">
+            <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1618681343/vehicle_image/Vitalijus%20Desukas%20hfg667.jpg" class="d-block w-100" alt="...">
+          </div>
 
-                <div class="carousel-item">
-                  <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1618678233/vehicle_image/Vitalijus%20Desukas%20%28model.number_plate%29.jpg" class="d-block w-100" alt="...">
-                </div>
-              </div>
-
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                <div>
-                  <strong>Miestai:</strong> <br>
-                  <% @vehicle.cities.each do |city|%>
-                    <%= city["city"] || city["town"] || "Užmiestis" %>
-                    <%= city["percentage"].round(1) %>% <br>
-                  <% end %>
-                </div>
-
-                <br>
-
-                <div>
-                  <strong>Vietoves:</strong><br>
-                  <% @vehicle.elderships.each do |eldership| %>
-                    <%= eldership["eldership"] || "Užmiestis" %>
-                    <%= eldership["percentage"].round(1) %>% <br>
-                  <% end %>
-                </div>
-
-                <p>
-                  <strong>Manufacturer:</strong>
-                  <%= @vehicle.manufacturer %>
-                </p>
-
-                <p>
-                  <strong>Model:</strong>
-                  <%= @vehicle.model %>
-                </p>
-
-                <p>
-                  <strong>Plate number:</strong>
-                  <%= @vehicle.plate_number %>
-                </p>
-
-                <p>
-                  <strong>Category:</strong>
-                  <%= @vehicle.category %>
-                </p>
-
-                <p>
-                  <strong>Body style:</strong>
-                  <%= @vehicle.body_style %>
-                </p>
-
-                <p>
-                  <strong>Color:</strong>
-                  <%= @vehicle.color %>
-                </p>
-
-                <p>
-                  <strong>Year:</strong>
-                  <%= @vehicle.year %>
-                </p>
-
-                <p>
-                  <strong>Ad size:</strong>
-                  <%= @vehicle.ad_size %>
-                </p>
-
-                <p>
-                  <strong>Ad duration:</strong>
-                  <%= @vehicle.ad_duration %>
-                </p>
-
-                <p>
-                  <strong>User:</strong>
-                  <%= @vehicle.user_id %>
-                </p>
-
-              </p>
-
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
+          <div class="carousel-item">
+            <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1618678233/vehicle_image/Vitalijus%20Desukas%20%28model.number_plate%29.jpg" class="d-block w-100" alt="...">
           </div>
         </div>
 
-        <div class="col-sm-3">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Kaina</h5>
-              <div class="card-text">
-                <ul>
-                  <li>1km/€</li>
-                </ul>
-              </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
 
-              <div class="d-grid gap-2">
-                <%= link_to 'Tęsti', new_order_path(vehicle_id: @vehicle.id), class: "btn btn-primary" %>
-              </div>
-            </div>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">
+          <div>
+            <strong>Miestai:</strong> <br>
+            <%= vehicle_cities_helper(@vehicle) %>
           </div>
+
+          <br>
+
+          <div>
+            <strong>Vietoves:</strong><br>
+            <%= vehicle_elderships_helper(@vehicle) %>
+          </div>
+
+          <p>
+            <strong>Manufacturer:</strong>
+            <%= @vehicle.manufacturer %>
+          </p>
+
+          <p>
+            <strong>Model:</strong>
+            <%= @vehicle.model %>
+          </p>
+
+          <p>
+            <strong>Plate number:</strong>
+            <%= @vehicle.plate_number %>
+          </p>
+
+          <p>
+            <strong>Category:</strong>
+            <%= @vehicle.category %>
+          </p>
+
+          <p>
+            <strong>Body style:</strong>
+            <%= @vehicle.body_style %>
+          </p>
+
+          <p>
+            <strong>Color:</strong>
+            <%= @vehicle.color %>
+          </p>
+
+          <p>
+            <strong>Year:</strong>
+            <%= @vehicle.year %>
+          </p>
+
+          <p>
+            <strong>Ad size:</strong>
+            <%= @vehicle.ad_size %>
+          </p>
+
+          <p>
+            <strong>Ad duration:</strong>
+            <%= @vehicle.ad_duration %>
+          </p>
+
+          <p>
+            <strong>User:</strong>
+            <%= @vehicle.user_id %>
+          </p>
+
+        </p>
+
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+
+    <div class="vehicle-sidebar-container">
+      <div class="vehicle-sidebar">
+        <div class="vehicle-sidebar-header">
+          Užsakymo info
+        </div>
+
+        <div class="vehicle-sidebar-info">
+          <ul>
+            <li>
+              <span class="vehicle-sidebar-info-title">
+                Kaina/km:
+              </span>
+
+              <span class="vehicle-sidebar-info-value">
+                €<%= @vehicle.km_price %>/km
+              </span>
+            </li>
+
+            <li>
+              <span class="vehicle-sidebar-info-title">
+                Reklamos dydis:
+              </span>
+
+              <span class="vehicle-sidebar-info-value">
+                <%= @vehicle.ad_size %>
+              </span>
+            </li>
+
+            <li>
+              <span class="vehicle-sidebar-info-title">
+                Reklamos trukmė:
+              </span>
+
+              <span class="vehicle-sidebar-info-value">
+                <%= @vehicle.ad_duration %>
+              </span>
+            </li>
+
+            <li>
+              <span class="vehicle-sidebar-info-title">
+                Auto ID:
+              </span>
+
+              <span class="vehicle-sidebar-info-value">
+                <%= @vehicle.tracker_imei %>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="vehicle-sidebar-admin-price">
+          <ul>
+            <li>
+              <span class="vehicle-sidebar-info-title">
+                Medžiagos:
+              </span>
+
+              <span class="vehicle-sidebar-info-value">
+                €400
+              </span>
+            </li>
+          <ul>
+        </div>
+
+        <div class="d-grid gap-2 vehicle-sidebar-button">
+          <%= link_to 'Tęsti', new_order_path(vehicle_id: @vehicle.id), class: "btn btn-primary" %>
         </div>
       </div>
     </div>

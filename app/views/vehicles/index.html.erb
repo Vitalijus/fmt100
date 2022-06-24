@@ -43,19 +43,11 @@
 
           <ul class="dropdown-menu dropdown-menu-end">
             <%= sort_link(@q, :total_km, hide_indicator: true, default_order: :desc) do %>
-              <li><button class="dropdown-item" type="button">Viso km.</button></li>
+              <li><button class="dropdown-item" type="button">Kilometrus</button></li>
             <% end %>
 
-            <%= sort_link(@q, :last_four_weeks_km, hide_indicator: true, default_order: :desc) do %>
-              <li><button class="dropdown-item" type="button">Pask. 4sav. km.</button></li>
-            <% end %>
-
-            <%= sort_link(@q, :total_km, hide_indicator: true, default_order: :desc) do %>
-              <li><button class="dropdown-item" type="button">Kaina</button></li>
-            <% end %>
-
-            <%= sort_link(@q, :percentage, hide_indicator: true, default_order: :asc) do %>
-              <li><button class="dropdown-item" type="button">Procentai</button></li>
+            <%= sort_link(@q, :km_price, hide_indicator: true, default_order: :desc) do %>
+              <li><button class="dropdown-item" type="button">Kainą</button></li>
             <% end %>
           </ul>
         </div>
@@ -111,7 +103,7 @@
                       </div>
                     </li>
 
-                    <% vehicle.elderships.first(3).each do |eldership| %>
+                    <% vehicle.elderships.first(4).each do |eldership| %>
                       <li>
                         <div class="card-text-value">
                           <%= eldership["eldership"] || "Užmiestis" %> <%= eldership["percentage"].round(1) %>%
