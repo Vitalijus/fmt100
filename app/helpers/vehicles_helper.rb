@@ -20,7 +20,7 @@ module VehiclesHelper
   end
 
   def km_converter_helper(distance)
-    (distance.to_f / 1000).round(2)
+    (distance.to_f / 1000).round(1)
   end
 
   # Order status
@@ -38,23 +38,5 @@ module VehiclesHelper
     odometers = Odometer.where(vehicle_id: vehicle.id)
     total_price = odometers.map{|odometer| odometer.distance_price.to_f }
     total_price.sum.round(2)
-  end
-
-  def vehicle_cities_helper(vehicle)
-    if vehicle.cities.present?
-      vehicle.cities.each do |city|
-        city["city"] || city["town"] || "Užmiestis"
-        city["percentage"].round(1)
-      end
-    end
-  end
-
-  def vehicle_elderships_helper(vehicle)
-    if vehicle.elderships.present?
-      vehicle.elderships.each do |eldership|
-        eldership["eldership"] || "Užmiestis"
-        eldership["percentage"].round(1)
-      end
-    end
   end
 end

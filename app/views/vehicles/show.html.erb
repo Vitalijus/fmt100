@@ -1,100 +1,214 @@
 <section>
   <div class="section-container">
     <div class="vehicle-container">
-      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1619019187/vehicle_image/Vitalijus%20Desukas%20c77859e4-14ce-40ec-b771-4ea2d924a955.jpg" class="d-block w-100" alt="...">
+      <div class="vehicle-body">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1619019187/vehicle_image/Vitalijus%20Desukas%20c77859e4-14ce-40ec-b771-4ea2d924a955.jpg" class="d-block w-100" alt="...">
+            </div>
+
+            <div class="carousel-item">
+              <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1618681343/vehicle_image/Vitalijus%20Desukas%20hfg667.jpg" class="d-block w-100" alt="...">
+            </div>
+
+            <div class="carousel-item">
+              <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1618678233/vehicle_image/Vitalijus%20Desukas%20%28model.number_plate%29.jpg" class="d-block w-100" alt="...">
+            </div>
           </div>
 
-          <div class="carousel-item">
-            <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1618681343/vehicle_image/Vitalijus%20Desukas%20hfg667.jpg" class="d-block w-100" alt="...">
-          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
 
-          <div class="carousel-item">
-            <img src="https://res.cloudinary.com/dhgsrpwf7/image/upload/v1618678233/vehicle_image/Vitalijus%20Desukas%20%28model.number_plate%29.jpg" class="d-block w-100" alt="...">
-          </div>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
+        <div class="vehicle-title">
+          <%= @vehicle.manufacturer %> <%= @vehicle.model %>
+        </div>
 
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        <div class="vehicle-text">
+          <div class="vehicle-info">
+            <span class="vehicle-info-title">
+              Kilometrai:
+            </span>
+
+            <span class="vehicle-info-value">
+              <%= km_converter_helper(@vehicle.total_km) %>km
+            </span>
+          </div>
+
+          <div class="vehicle-info">
+            <span class="vehicle-info-title">
+              Registracijos numeriai:
+            </span>
+
+            <span class="vehicle-info-value">
+              <%= @vehicle.plate_number %>
+            </span>
+          </div>
+
+          <div class="vehicle-info">
+            <span class="vehicle-info-title">
+              Kategorija:
+            </span>
+
+            <span class="vehicle-info-value">
+              <%= @vehicle.category %>
+            </span>
+          </div>
+
+          <div class="vehicle-info">
+            <span class="vehicle-info-title">
+              Kėbulas:
+            </span>
+
+            <span class="vehicle-info-value">
+              <%= @vehicle.body_style %>
+            </span>
+          </div>
+
+          <div class="vehicle-info">
+            <span class="vehicle-info-title">
+              Spalva:
+            </span>
+
+            <span class="vehicle-info-value">
+              <%= @vehicle.color %>
+            </span>
+          </div>
+
+          <div class="vehicle-info">
+            <span class="vehicle-info-title">
+              Metai:
+            </span>
+
+            <span class="vehicle-info-value">
+              <%= @vehicle.year %>
+            </span>
+          </div>
+
+          <div class="vehicle-info">
+            <span class="vehicle-info-title">
+              Reklamos dydis:
+            </span>
+
+            <span class="vehicle-info-value">
+              <%= @vehicle.ad_size %>
+            </span>
+          </div>
+
+          <div class="vehicle-info">
+            <span class="vehicle-info-title">
+              Reklamos trukmė:
+            </span>
+
+            <span class="vehicle-info-value">
+              <%= @vehicle.ad_duration %>
+            </span>
+          </div>
+        </div>
       </div>
 
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          <div>
-            <strong>Miestai:</strong> <br>
-            <%= vehicle_cities_helper(@vehicle) %>
-          </div>
+      <div class="vehicle-body">
+        <div class="vehicle-title">
+          Dažniausi miestai
+        </div>
 
-          <br>
+        <div class="vehicle-text">
+          <ul class="vehicle-places-header">
+            <li class="vehicle-places-counter"s>
+              #
+            </li>
 
-          <div>
-            <strong>Vietoves:</strong><br>
-            <%= vehicle_elderships_helper(@vehicle) %>
-          </div>
+            <li>
+              Vietovė
+            </li>
 
-          <p>
-            <strong>Manufacturer:</strong>
-            <%= @vehicle.manufacturer %>
-          </p>
+            <li>
+              Procentai
+            </li>
 
-          <p>
-            <strong>Model:</strong>
-            <%= @vehicle.model %>
-          </p>
+            <li>
+              Kilometrai
+            </li>
+          </ul>
 
-          <p>
-            <strong>Plate number:</strong>
-            <%= @vehicle.plate_number %>
-          </p>
+          <% @vehicle.cities.each.with_index(1) do |city, index| %>
+            <% if city["percentage"] >= 1 %>
+              <ul class="vehicle-places">
+                <li class="vehicle-places-counter">
+                  <%= index %>
+                </li>
 
-          <p>
-            <strong>Category:</strong>
-            <%= @vehicle.category %>
-          </p>
+                <li>
+                  <%= truncate(city["city"] || city["town"] || "Užmiestis", length: 15, omission: '.') %>
+                </li>
 
-          <p>
-            <strong>Body style:</strong>
-            <%= @vehicle.body_style %>
-          </p>
+                <li>
+                  <%= city["percentage"].round(1) %>%
+                </li>
 
-          <p>
-            <strong>Color:</strong>
-            <%= @vehicle.color %>
-          </p>
+                <li>
+                  <%= km_converter_helper(city["odometer"]) %>km
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
 
-          <p>
-            <strong>Year:</strong>
-            <%= @vehicle.year %>
-          </p>
+      <div class="vehicle-body">
+        <div class="vehicle-title">
+          Dažniausios vietovės
+        </div>
 
-          <p>
-            <strong>Ad size:</strong>
-            <%= @vehicle.ad_size %>
-          </p>
+        <div class="vehicle-text">
+          <ul class="vehicle-places-header">
+            <li class="vehicle-places-counter"s>
+              #
+            </li>
 
-          <p>
-            <strong>Ad duration:</strong>
-            <%= @vehicle.ad_duration %>
-          </p>
+            <li>
+              Vietovė
+            </li>
 
-          <p>
-            <strong>User:</strong>
-            <%= @vehicle.user_id %>
-          </p>
+            <li>
+              Procentai
+            </li>
 
-        </p>
+            <li>
+              Kilometrai
+            </li>
+          </ul>
 
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <% @vehicle.elderships.each.with_index(1) do |eldership, index| %>
+            <% if eldership["percentage"] >= 1 %>
+              <ul class="vehicle-places">
+                <li class="vehicle-places-counter">
+                  <%= index %>
+                </li>
+
+                <li>
+                  <%= truncate(eldership["eldership"] || "Užmiestis", length: 50, omission: '.') %>
+                </li>
+
+                <li>
+                  <%= eldership["percentage"].round(1) %>%
+                </li>
+
+                <li>
+                  <%= km_converter_helper(eldership["odometer"]) %>km
+                </li>
+              </ul>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
 
