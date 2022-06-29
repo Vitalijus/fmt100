@@ -48,6 +48,9 @@ gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
 gem 'sidekiq-limit_fetch'
 
+# cloudinary image
+gem 'cloudinary'
+
 # Client library
 gem "http"
 # GQL UI

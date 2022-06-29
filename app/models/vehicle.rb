@@ -3,6 +3,7 @@ class Vehicle < ApplicationRecord
   belongs_to :user
   has_many :odometers, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :images, dependent: :destroy
 
   # callbacks
   after_create :vehicle_km_price, :default_cities_and_elderships
