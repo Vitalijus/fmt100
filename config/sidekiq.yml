@@ -8,6 +8,10 @@
     cron: '0 */2 * * * *'
     class: VehicleCitiesEldershipsSchedulerWorker
     enabled: true
+  vehicle_city_scheduler_worker:
+    cron: '0 * * * * *'
+    class: VehicleCitySchedulerWorker
+    enabled: true
   vehicle_total_km_scheduler_worker:
     cron: '0 */5 * * * *'
     class: VehicleTotalKmSchedulerWorker

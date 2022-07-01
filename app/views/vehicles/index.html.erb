@@ -6,14 +6,14 @@
           <div class="row g-2">
             <div class="col-md-6">
               <div class="form-floating">
-                <%= f.select :city_cont, options_for_select(options_for_select_helper), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+                <%= f.select(:city_cont, cities_options_for_select_helper, {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"}) %>
                 <label for="floatingSelectGrid">Miestas</label>
               </div>
             </div>
 
             <div class="col-md-5">
               <div class="form-floating">
-                <%= f.select :body_style_cont, options_for_select(["Sedan"]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+                <%= f.select(:body_style_cont, body_style_select_helper, {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"}) %>
                 <label for="floatingSelectGrid">Kėbulo tipas</label>
               </div>
             </div>
@@ -55,72 +55,72 @@
     </div>
 
     <% @vehicles.each do |vehicle| %>
-      <div class="vehicle-list-container">
-        <%= link_to vehicle do %>
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-2">
-                <img src="https://s.auto.drom.ru/i24197/c/photos/fullsize/lexus/gs300/lexus_gs300_521056.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
+      <%= link_to vehicle do %>
+        <div class="vehicles-list">
+          <div class="vehicles-list-primary-image">
+            <% vehicle.images.each do |image| %>
+              <% if image[:primary] %>
+                <%= image_tag("https://res.cloudinary.com/dhgsrpwf7/image/upload/c_fill,h_140,w_180/v1618681343/vehicle_image/Vitalijus%20Desukas%20hfg667.jpg", class: "img-fluid", alt: "...") %>
+              <% end %>
+            <% end %>
+          </div>
 
-              <div class="col-md-10">
-                <div class="card-body">
-                  <div class="vehicle-list-item-title-container">
-                    <div class="vehicle-list-item-title">
-                      <%= vehicle.manufacturer %> <%= vehicle.model %>
+          <div class="vehicles-list-body">
+            <div class="card-body">
+              <div class="vehicle-list-item-title-container">
+                <div class="vehicle-list-item-title">
+                  <%= vehicle.manufacturer %> <%= vehicle.model %>
 
-                      <div class="vehicle-list-item-subtitle">
-                        <%= vehicle.year %> metų <%= vehicle.color %> <%= vehicle.body_style %>
-                         €<%= vehicle.km_price %> <%= vehicle.category %>
-                      </div>
-                    </div>
-
-                    <div class="vehicle-list-item-total-km">
-                      <%= km_converter_helper(vehicle.total_km) %>km
-                    </div>
-                  </div>
-
-                  <ul class="card-text">
-                    <li>
-                      <div class="card-text-value">
-                        Miestas:
-                      </div>
-                    </li>
-
-                    <% vehicle.cities.first(3).each do |city| %>
-                      <li>
-                        <div class="card-text-value">
-                          <%= city["city"] || city["town"] || "Užmiestis" %> <%= city["percentage"].round(1) %>%
-                        </div>
-                      </li>
-                    <% end %>
-                  </ul>
-
-                  <ul class="card-text">
-                    <li>
-                      <div class="card-text-value">
-                        Vietovė:
-                      </div>
-                    </li>
-
-                    <% vehicle.elderships.first(4).each do |eldership| %>
-                      <li>
-                        <div class="card-text-value">
-                          <%= eldership["eldership"] || "Užmiestis" %> <%= eldership["percentage"].round(1) %>%
-                        </div>
-                      </li>
-                    <% end %>
-                  </ul>
-
-                  <div class="card-footer">
-                    <%= order_status_helper(vehicle) %>
+                  <div class="vehicle-list-item-subtitle">
+                    <%= vehicle.year %> metų <%= vehicle.color %> <%= vehicle.body_style %>
+                     €<%= vehicle.km_price %> <%= vehicle.category %>
                   </div>
                 </div>
+
+                <div class="vehicle-list-item-total-km">
+                  <%= km_converter_helper(vehicle.total_km) %>km
+                </div>
+              </div>
+
+              <ul class="card-text">
+                <li>
+                  <div class="card-text-value">
+                    Miestas:
+                  </div>
+                </li>
+
+                <% vehicle.cities.first(3).each do |city| %>
+                  <li>
+                    <div class="card-text-value">
+                      <%= city["city"] || city["town"] || "Užmiestis" %> <%= city["percentage"].round(1) %>%
+                    </div>
+                  </li>
+                <% end %>
+              </ul>
+
+              <ul class="card-text">
+                <li>
+                  <div class="card-text-value">
+                    Vietovė:
+                  </div>
+                </li>
+
+                <% vehicle.elderships.first(4).each do |eldership| %>
+                  <li>
+                    <div class="card-text-value">
+                      <%= eldership["eldership"] || "Užmiestis" %> <%= eldership["percentage"].round(1) %>%
+                    </div>
+                  </li>
+                <% end %>
+              </ul>
+
+              <div class="card-footer">
+                <%= order_status_helper(vehicle) %>
               </div>
             </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </section>

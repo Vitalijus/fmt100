@@ -1,4 +1,5 @@
 @import "bootstrap/scss/bootstrap";
+@import "mixins/media_queries";
 @import "main";
 @import "fonts";
 @import "header";
@@ -11,4 +12,4 @@
 @import "orders";
 @import "form_container";
 @import "section_container";
-@import "mixins";
+@import "form";

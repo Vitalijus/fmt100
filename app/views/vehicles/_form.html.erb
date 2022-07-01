@@ -11,54 +11,37 @@
     </div>
   <% end %>
 
-  <div class="vehicle-field form-floating">
-    <%= form.text_field :manufacturer, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :manufacturer, "Gamintojas*", for: "floatingInput" %>
+  <div class="vehicle-field">
+    <%= form.label :manufacturer, "Gamintojas*", for: "manufacturerInput", class: "form-label" %>
+    <%= form.text_field :manufacturer, {class: "form-control", id: "manufacturerInput", placeholder: "pvz. Lexus"} %>
   </div>
 
-  <div class="vehicle-field form-floating">
-    <%= form.text_field :model, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :model, "Modelis*", for: "floatingInput" %>
+  <div class="vehicle-field">
+    <%= form.label :model, "Modelis*", for: "modelInput", class: "form-label" %>
+    <%= form.text_field :model, {class: "form-control", id: "modelInput", placeholder: "pvz. GS300"} %>
   </div>
 
-  <div class="vehicle-field form-floating">
-    <%= form.text_field :plate_number, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :plate_number, "Auto. numeris*", for: "floatingInput" %>
+  <div class="vehicle-field">
+    <%= form.label :plate_number, "Valstybinis numeris*", for: "plateNumberInput", class: "form-label" %>
+    <%= form.text_field :plate_number, {class: "form-control", id: "plateNumberInput", placeholder: "pvz. LTN012"} %>
   </div>
 
-  <div class="vehicle-field form-floating">
-    <%= form.select :category, options_for_select(["Lengvasis"]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-    <label for="floatingSelectGrid">Kategorija*</label>
+  <div class="vehicle-field">
+    <%= form.label :year, "Pagaminimo metai*", for: "yearSelectGrid", class: "form-label" %>
+    <%= form.select :year, options_for_select(Date.today.year.downto(2010)), {}, {class: "form-select", id: "yearSelectGrid"} %>
   </div>
 
-  <div class="vehicle-field form-floating">
-    <%= form.select :year, options_for_select(Date.today.year.downto(2010)), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-    <label for="floatingSelectGrid">Pagaminimo metai*</label>
+  <div class="vehicle-field">
+    <%= form.label :body_style, "Kėbulo tipas*", for: "bodyStyleSelectGrid", class: "form-label" %>
+    <%= form.select :body_style, options_for_select(body_style_select_helper), {}, {class: "form-select", id: "bodyStyleSelectGrid"} %>
   </div>
 
-  <div class="vehicle-field form-floating">
-    <%= form.select :body_style, options_for_select(["Sedanas", "Hečbekas", "Universalas", "Visureigis", "Vienatūris", "Kupė", "Komercinis", "Kabrioletas", "Limuzinas", "Pikapas", "Kita"]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-    <label for="floatingSelectGrid">Kėbulo tipas*</label>
-  </div>
-
-  <div class="vehicle-field form-floating">
-    <%= form.select :color, options_for_select(["Balta/Perlas", "Geltona/Auksas", "Juoda", "Mėlyna/Žydra", "Oranžinė", "Pilka", "Sidabrinė", "Raudona", "Ruda/Rusva", "Žalia", "Kita"]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-    <label for="floatingSelectGrid">Spalva*</label>
-  </div>
-
-  <div class="vehicle-field form-floating">
-    <%= form.select :ad_size, options_for_select([["Pilnas", 1], ["Pusė mašinos", 2], ["Dalinis", 3]]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-    <label for="floatingSelectGrid">Reklamos plotas*</label>
-    <div class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-
-  <div class="vehicle-field form-floating">
-    <%= form.select :ad_duration, options_for_select([["iki 3mėn.", 1], ["iki 6mėn.", 6], ["iki 12mėn.", 12]]), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-    <label for="floatingSelectGrid">Reklamos trukmė*</label>
-    <div class="form-text">We'll never share your email with anyone else.</div>
+  <div class="vehicle-field">
+    <%= form.label :color, "Spalva*", for: "colorSelectGrid", class: "form-label" %>
+    <%= form.select :color, options_for_select(color_select_helper), {}, {class: "form-select", id: "colorSelectGrid"} %>
   </div>
 
   <div class="col-md d-grid gap-2">
-    <%= form.submit "Registruoti", class: "btn btn-primary" %>
+    <%= form.submit "Išsaugoti", class: "btn btn-primary" %>
   </div>
 <% end %>

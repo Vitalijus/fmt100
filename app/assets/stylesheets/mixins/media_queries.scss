@@ -3,7 +3,7 @@
 }
 
 @mixin tablet {
-  @media (min-width: 600px) { @content; }
+  @media only screen and (min-width: 600px) and (max-width: 1199px) { @content; }
 }
 
 @mixin desktop {
