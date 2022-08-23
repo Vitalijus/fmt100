@@ -26,12 +26,12 @@ module ApplicationHelper
 
   # Ad size
   def ad_size_select_helper
-    [["Pilnas", 1], ["Pusė mašinos", 2], ["Dalinis", 3]]
+    [["Pilnas", "full"], ["Pusė mašinos", "half"], ["Dalinis", "partial"]]
   end
 
   # Ad duration
   def ad_duration_select_helper
-    [["iki 3mėn.", 1], ["iki 6mėn.", 6], ["iki 12mėn.", 12]]
+    [["iki 3mėn.", 90], ["iki 6mėn.", 180], ["iki 12mėn.", 365]]
   end
 
   # Body style

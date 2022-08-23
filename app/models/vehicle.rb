@@ -12,11 +12,9 @@ class Vehicle < ApplicationRecord
             :color, :year, presence: true
   validates :tracker_imei, uniqueness: true, allow_nil: true
 
+  private
+
   def vehicle_km_price
     self.update(km_price: 0.02)
-  end
-
-  def default_cities_and_elderships
-    self.update(cities: [], elderships: [])
   end
 end

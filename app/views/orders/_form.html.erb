@@ -1,60 +1,48 @@
-<%= form_with(model: order) do |form| %>
-  <% if order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+<% if order.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
 
-      <ul>
-        <% order.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="sidebar">
-    <%= @vehicle.manufacturer %>
-    <%= @vehicle.km_price %>€/km
-    <%= @vehicle.percentage %>% laiko važinėja <%= @vehicle.city %>
-  </div>
-
-  <%= form.hidden_field :vehicle_id %>
-
-  <div class="order-field form-floating">
-    <%= form.text_field :name, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :name, "Vardas", for: "floatingInput" %>
-  </div>
-
-  <div class="order-field form-floating">
-    <%= form.text_field :surname, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :surname, "Pavardė", for: "floatingInput" %>
-  </div>
-
-  <div class="order-field form-floating">
-    <%= form.text_field :email_address, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :email_address, "El. pašto adresas", for: "floatingInput" %>
-  </div>
-
-  <div class="order-field form-floating">
-    <%= form.text_field :phone_number, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :phone_number, "Tel. numeris", for: "floatingInput" %>
-  </div>
-
-  <div class="order-field form-floating">
-    <%= form.text_field :company_title, {class: "form-control", id: "floatingInput"} %>
-    <%= form.label :company_title, "Įmonės pav.", for: "floatingInput" %>
-  </div>
-
-  <div class="order-field form-floating">
-    <%= form.select :ad_size, options_for_select(ad_size_select_helper), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-    <%= form.label :ad_size, "Reklamos dydis", for: "floatingSelectGrid" %>
-  </div>
-
-  <div class="order-field form-floating">
-    <%= form.select :ad_duration, options_for_select(ad_duration_select_helper), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-    <%= form.label :ad_duration, "Reklamos trukmė", for: "floatingSelectGrid" %>
-  </div>
-
-  <div class="col-md d-grid gap-2">
-    <%= form.submit "Užsakyti", class: "btn btn-primary" %>
+    <ul>
+      <% order.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
+
+<%= form.hidden_field :vehicle_id %>
+
+<div class="order-field form-floating">
+  <%= form.text_field :name, {class: "form-control", id: "floatingInput"} %>
+  <%= form.label :name, "Vardas", for: "floatingInput" %>
+</div>
+
+<div class="order-field form-floating">
+  <%= form.text_field :surname, {class: "form-control", id: "floatingInput"} %>
+  <%= form.label :surname, "Pavardė", for: "floatingInput" %>
+</div>
+
+<div class="order-field form-floating">
+  <%= form.text_field :email_address, {class: "form-control", id: "floatingInput"} %>
+  <%= form.label :email_address, "El. pašto adresas", for: "floatingInput" %>
+</div>
+
+<div class="order-field form-floating">
+  <%= form.text_field :phone_number, {class: "form-control", id: "floatingInput"} %>
+  <%= form.label :phone_number, "Tel. numeris", for: "floatingInput" %>
+</div>
+
+<div class="order-field form-floating">
+  <%= form.text_field :company_title, {class: "form-control", id: "floatingInput"} %>
+  <%= form.label :company_title, "Įmonės pav.", for: "floatingInput" %>
+</div>
+
+<div class="order-field form-floating">
+  <%= form.select :ad_size, options_for_select(ad_size_select_helper), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+  <%= form.label :ad_size, "Reklamos dydis", for: "floatingSelectGrid" %>
+</div>
+
+<div class="order-field form-floating">
+  <%= form.select :ad_duration, options_for_select(ad_duration_select_helper), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
+  <%= form.label :ad_duration, "Reklamos trukmė", for: "floatingSelectGrid" %>
+</div>

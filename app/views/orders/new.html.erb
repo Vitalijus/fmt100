@@ -1,11 +1,95 @@
-<div class="container-fluid wrapper">
-  <div class="content-wrapper">
-    <div class="content-wrapper-header">
-      Užsakymo informacija
-    </div>
+<section>
+  <div class="section-container order">
+    <%= form_with(model: @order) do |form| %>
+      <div class="order-container">
+        <div class="order-container-header">
+          Užsakymo forma
+        </div>
 
-    <div class="content-body">
-      <%= render 'form', order: @order %>
-    </div>
+        <div class="order-container-body">
+          <%= render 'form', {  form: form, order: @order } %>
+        </div>
+      </div>
+
+      <div class="order-sidebar-container">
+        <div class="order-sidebar">
+          <div class="order-sidebar-header">
+            Užsakymo info
+          </div>
+
+          <div class="order-sidebar-info">
+            <ul>
+              <li>
+                <span class="order-sidebar-info-title">
+                  Auto:
+                </span>
+
+                <span class="order-sidebar-info-value">
+                  <%= @vehicle.manufacturer %> <%= @vehicle.model %>
+                </span>
+              </li>
+
+              <li>
+                <span class="order-sidebar-info-title">
+                  Miestas:
+                </span>
+
+                <span class="order-sidebar-info-value">
+                  <%= @vehicle.city %>
+                </span>
+              </li>
+
+              <li>
+                <span class="order-sidebar-info-title">
+                  Kaina/km:
+                </span>
+
+                <span class="order-sidebar-info-value">
+                  €<%= @vehicle.km_price %>/km
+                </span>
+              </li>
+
+              <li>
+                <span class="order-sidebar-info-title">
+                  Reklamos dydis:
+                </span>
+
+                <span class="order-sidebar-info-value">
+                  <%= @vehicle.ad_size %>
+                </span>
+              </li>
+
+              <li>
+                <span class="order-sidebar-info-title">
+                  Reklamos trukmė:
+                </span>
+
+                <span class="order-sidebar-info-value">
+                  <%= @vehicle.ad_duration %>
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="vehicle-sidebar-admin-price">
+            <ul>
+              <li>
+                <span class="vehicle-sidebar-info-title">
+                  Medžiagos:
+                </span>
+
+                <span class="vehicle-sidebar-info-value">
+                  €400
+                </span>
+              </li>
+            <ul>
+          </div>
+
+          <div class="d-grid gap-2 vehicle-sidebar-button">
+            <%= form.submit "Užsakyti", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-</div>
+</section>
