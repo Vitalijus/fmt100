@@ -12,14 +12,14 @@
           </div>
         <% end %>
 
-        <div class="registration-field form-floating">
-          <%= f.email_field :email, {autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput"} %>
+        <div class="registration-field">
           <%= f.label :email, "Elektroninio pašto adresas", for: "floatingInput" %>
+          <%= f.email_field :email, {autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput"} %>
         </div>
 
-        <div class="registration-field form-floating">
-          <%= f.password_field :password, {autocomplete: "new-password", class: "form-control", id: "floatingInput"} %>
+        <div class="registration-field">
           <%= f.label :password, "Slaptažodis", for: "floatingInput" %>
+          <%= f.password_field :password, {autocomplete: "new-password", class: "form-control", id: "floatingInput"} %>
           <% if @minimum_password_length %>
             <div class="field-helper-text">
               Mažiausiai <%= @minimum_password_length %> simboliai
@@ -27,9 +27,9 @@
           <% end %>
         </div>
 
-        <div class="registration-field form-floating">
-          <%= f.password_field :password_confirmation, {autocomplete: "new-password", class: "form-control", id: "floatingInput"} %>
+        <div class="registration-field">
           <%= f.label :password_confirmation, "Pakartoti slaptažodį", for: "floatingInput" %>
+          <%= f.password_field :password_confirmation, {autocomplete: "new-password", class: "form-control", id: "floatingInput"} %>
         </div>
 
         <div class="col-md d-grid gap-2">

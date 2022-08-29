@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
 
   def my_orders
-    @my_orders = Order.where(user_id: current_user)
+    @my_orders = Order.where(user_id: current_user).paginate(page: params[:page], per_page: 6)
   end
 
   # GET /orders or /orders.json

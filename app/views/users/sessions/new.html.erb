@@ -13,14 +13,14 @@
           </div>
         <% end %>
 
-        <div class="registration-field form-floating">
-          <%= f.email_field :email, {autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput"} %>
+        <div class="registration-field">
           <%= f.label :email, "Elektroninio pašto adresas", for: "floatingInput" %>
+          <%= f.email_field :email, {autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput"} %>
         </div>
 
-        <div class="registration-field form-floating">
-          <%= f.password_field :password, {autocomplete: "current-password", class: "form-control", id: "floatingInput"} %>
+        <div class="registration-field">
           <%= f.label :password, "Slaptažodis", for: "floatingInput" %>
+          <%= f.password_field :password, {autocomplete: "current-password", class: "form-control", id: "floatingInput"} %>
         </div>
 
         <div class="field-remember-me-container">

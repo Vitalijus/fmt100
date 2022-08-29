@@ -12,37 +12,37 @@
 
 <%= form.hidden_field :vehicle_id %>
 
-<div class="order-field form-floating">
-  <%= form.text_field :name, {class: "form-control", id: "floatingInput"} %>
-  <%= form.label :name, "Vardas", for: "floatingInput" %>
+<div class="order-field">
+  <%= form.label :name, "Vardas*", for: "floatingInputName" %>
+  <%= form.text_field :name, {class: "form-control", id: "floatingInputName"} %>
 </div>
 
-<div class="order-field form-floating">
+<div class="order-field">
+  <%= form.label :surname, "Pavardė*", for: "floatingInput" %>
   <%= form.text_field :surname, {class: "form-control", id: "floatingInput"} %>
-  <%= form.label :surname, "Pavardė", for: "floatingInput" %>
 </div>
 
-<div class="order-field form-floating">
-  <%= form.text_field :email_address, {class: "form-control", id: "floatingInput"} %>
+<div class="order-field">
   <%= form.label :email_address, "El. pašto adresas", for: "floatingInput" %>
+  <%= form.text_field :email_address, {class: "form-control", id: "floatingInput"} %>
 </div>
 
-<div class="order-field form-floating">
+<div class="order-field">
+  <%= form.label :phone_number, "Tel. numeris*", for: "floatingInput" %>
   <%= form.text_field :phone_number, {class: "form-control", id: "floatingInput"} %>
-  <%= form.label :phone_number, "Tel. numeris", for: "floatingInput" %>
 </div>
 
-<div class="order-field form-floating">
+<div class="order-field">
+  <%= form.label :company_title, "Įmonės pav.*", for: "floatingInput" %>
   <%= form.text_field :company_title, {class: "form-control", id: "floatingInput"} %>
-  <%= form.label :company_title, "Įmonės pav.", for: "floatingInput" %>
 </div>
 
-<div class="order-field form-floating">
+<div class="order-field">
+  <%= form.label :ad_size, "Reklamos dydis*", for: "floatingSelectGrid" %>
   <%= form.select :ad_size, options_for_select(ad_size_select_helper), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-  <%= form.label :ad_size, "Reklamos dydis", for: "floatingSelectGrid" %>
 </div>
 
-<div class="order-field form-floating">
+<div class="order-field">
+  <%= form.label :ad_duration, "Reklamos trukmė*", for: "floatingSelectGrid" %>
   <%= form.select :ad_duration, options_for_select(ad_duration_select_helper), {include_blank: true}, {class: "form-select", id: "floatingSelectGrid"} %>
-  <%= form.label :ad_duration, "Reklamos trukmė", for: "floatingSelectGrid" %>
 </div>

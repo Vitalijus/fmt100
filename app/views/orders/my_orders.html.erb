@@ -1,42 +1,97 @@
-<div class="container-fluid my-page">
-  <div class="content-wrapper">
-    <div class="content-wrapper-header">
+<section>
+  <div class="section-container">
+    <div class="my-vehicles-header">
       Užsakymai
     </div>
 
-    <div class="content-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Gamintojas</th>
-            <th scope="col">Modelis</th>
-            <th scope="col">Auto. numeriai</th>
-            <th scope="col">Kategorija</th>
-            <th scope="col">Kėbulo tipas</th>
-            <th scope="col">Spalva</th>
-            <th scope="col">Metai</th>
-            <th scope="col">Rek. plotas</th>
-            <th scope="col">Rek. trukmė</th>
-            <th scope="col">Kaina</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @my_orders.each do |my_order| %>
-            <tr>
-              <td><%= my_order.vehicle.manufacturer %></td>
-              <td><%= my_order.vehicle.model %></td>
-              <td><%= my_order.vehicle.plate_number %></td>
-              <td><%= my_order.vehicle.category %></td>
-              <td><%= my_order.vehicle.body_style %></td>
-              <td><%= my_order.vehicle.color %></td>
-              <td><%= my_order.vehicle.year %></td>
-              <td><%= my_order.vehicle.ad_size %></td>
-              <td><%= my_order.vehicle.ad_duration %></td>
-              <td><%= my_order.vehicle.km_price %>€/km</td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <% @my_orders.each do |order| %>
+      <%= link_to order.vehicle do %>
+        <div class="vehicles-list">
+          <div class="vehicles-list-primary-image">
+            <% order.vehicle.images.each do |image| %>
+              <% if image[:primary] %>
+                <%= cl_image_tag(image.image.thumb, class: "img-fluid") %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="vehicles-list-body">
+            <div class="card-body">
+              <div class="vehicle-list-item-title-container">
+                <div class="vehicle-list-item-title">
+                  <%= order.vehicle.manufacturer %> <%= order.vehicle.model %>
+                </div>
+
+                <div class="vehicle-list-item-total-km">
+                  <%= km_converter_helper(order.vehicle.total_km) %>km
+                </div>
+              </div>
+
+              <div class="vehicle-list-body">
+                <ul class="vehicle-list-body-cities">
+                  <li>
+                    <div class="vehicle-list-body-title">
+                      Miestai:
+                    </div>
+                  </li>
+
+                  <% order.vehicle.cities.first(3).each do |city| %>
+                    <li>
+                      <div class="">
+                        <%= city["city"] || city["town"] || "Užmiestis" %> - <%= city["percentage"].round(1) %>%
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+
+                <ul class="vehicle-list-body-elderships">
+                  <li>
+                    <div class="vehicle-list-body-title">
+                      Vietovės:
+                    </div>
+                  </li>
+
+                  <% order.vehicle.elderships.first(3).each do |eldership| %>
+                    <li>
+                      <div class="">
+                        <%= eldership["eldership"] || "Užmiestis" %> - <%= eldership["percentage"].round(1) %>%
+                      </div>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+
+              <div class="vehicle-list-footer">
+                <ul class="vehicle-footer-info">
+                  <li>
+                    Kaina: €<%= order.vehicle.km_price %>/km
+                  </li>
+
+                  <li>
+                    Matomas: <%= order.vehicle.published ? "Taip" : "Ne" %>
+                  </li>
+                </ul>
+
+                <ul class="vehicle-footer-actions">
+                  <li>
+                    <%= link_to 'Redaguoti', edit_vehicle_path(order.vehicle) %>
+                  </li>
+
+                  <li>
+                    <%= link_to 'Trinti', order.vehicle, method: :delete, data: { confirm: 'Tikrai?' } %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
-</div>
+</section>
+
+<section>
+  <div class="section-container">
+    <%= will_paginate @my_orders, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+  </div>
+</section>

@@ -13,9 +13,9 @@
         </div>
       <% end %>
 
-        <div class="registration-field form-floating">
-          <%= f.email_field :email, {autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput"} %>
+        <div class="registration-field">
           <%= f.label :email, "Elektroninio pašto adresas", for: "floatingInput" %>
+          <%= f.email_field :email, {autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput"} %>
         </div>
 
         <div class="col-md d-grid gap-2">

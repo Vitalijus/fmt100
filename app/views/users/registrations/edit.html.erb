@@ -12,18 +12,18 @@
           </div>
         <% end %>
 
-        <div class="registration-field form-floating">
-          <%= f.email_field :email, {autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput"} %>
+        <div class="registration-field">
           <%= f.label :email, "Elektroninio pašto adresas", for: "floatingInput" %>
+          <%= f.email_field :email, {autofocus: true, autocomplete: "email", class: "form-control", id: "floatingInput"} %>
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
 
-        <div class="registration-field form-floating">
-          <%= f.password_field :password, {autocomplete: "new-password", class: "form-control", id: "floatingInput"} %>
+        <div class="registration-field">
           <%= f.label :password, "Naujas slaptažodis", for: "floatingInput" %>
+          <%= f.password_field :password, {autocomplete: "new-password", class: "form-control", id: "floatingInput"} %>
           <% if @minimum_password_length %>
             <div class="field-helper-text">
               Mažiausiai <%= @minimum_password_length %> simboliai. Palikti tuščią jei nenorite keisti slaptažodį.
@@ -31,14 +31,14 @@
           <% end %>
         </div>
 
-        <div class="registration-field form-floating">
-          <%= f.password_field :password_confirmation, {autocomplete: "new-password", class: "form-control", id: "floatingInput"} %>
+        <div class="registration-field">
           <%= f.label :password_confirmation, "Pakartoti naują slaptažodį", for: "floatingInput" %>
+          <%= f.password_field :password_confirmation, {autocomplete: "new-password", class: "form-control", id: "floatingInput"} %>
         </div>
 
-        <div class="registration-field form-floating">
-          <%= f.password_field :current_password, {autocomplete: "current-password", class: "form-control", id: "floatingInput"} %>
+        <div class="registration-field">
           <%= f.label :current_password, "Dabartinis slaptažodis", for: "floatingInput" %>
+          <%= f.password_field :current_password, {autocomplete: "current-password", class: "form-control", id: "floatingInput"} %>
           <div class="field-helper-text">
             Mums reikalingas Jūsų dabartinis slaptažodžis, kad patvirtintume pakeitimus.
           </div>
