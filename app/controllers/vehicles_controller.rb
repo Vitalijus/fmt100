@@ -3,13 +3,13 @@ class VehiclesController < ApplicationController
   before_action :set_vehicle, only: %i[ show edit update destroy ]
 
   def my_vehicles
-    @my_vehicles = Vehicle.where(user_id: current_user)
+    @my_vehicles = Vehicle.where(user_id: current_user).paginate(page: params[:page], per_page: 6)
   end
 
   # GET /vehicles or /vehicles.json
   def index
     @q = Vehicle.where(published: true).ransack(params[:q])
-    @vehicles = @q.result(distinct: true).paginate(page: params[:page], per_page: 4)
+    @vehicles = @q.result(distinct: true).paginate(page: params[:page], per_page: 6)
   end
 
   # GET /vehicles/1 or /vehicles/1.json

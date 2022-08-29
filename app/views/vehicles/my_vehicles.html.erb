@@ -1,49 +1,85 @@
-<div class="container-fluid my-page">
-  <div class="content-wrapper">
-    <div class="content-wrapper-header">
+<section>
+  <div class="section-container">
+    <div class="my-vehicles-header">
       Automobiliai
     </div>
 
-    <div class="content-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Gamintojas</th>
-            <th scope="col">Modelis</th>
-            <th scope="col">Auto. numeriai</th>
-            <th scope="col">Kategorija</th>
-            <th scope="col">Kėbulo tipas</th>
-            <th scope="col">Spalva</th>
-            <th scope="col">Metai</th>
-            <th scope="col">Rek. plotas</th>
-            <th scope="col">Rek. trukmė</th>
-            <th scope="col">Kaina</th>
-            <th scope="col">Užsakymai</th>
-            <th scope="col">Paskelbtas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @my_vehicles.each do |my_vehicle| %>
-            <tr>
-              <td><%= my_vehicle.manufacturer %></td>
-              <td><%= my_vehicle.model %></td>
-              <td><%= my_vehicle.plate_number %></td>
-              <td><%= my_vehicle.category %></td>
-              <td><%= my_vehicle.body_style %></td>
-              <td><%= my_vehicle.color %></td>
-              <td><%= my_vehicle.year %></td>
-              <td><%= my_vehicle.ad_size %></td>
-              <td><%= my_vehicle.ad_duration %></td>
-              <td><%= my_vehicle.km_price %>€/km</td>
-              <td><%= my_vehicle.orders.count %></td>
-              <td><%= my_vehicle.published ? "Taip" : "Ne" %></td>
-              <td><%= link_to 'Atidaryti', my_vehicle %></td>
-              <td><%= link_to 'Redaguoti', edit_vehicle_path(my_vehicle) %></td>
-              <td><%= link_to 'Trinti', my_vehicle, method: :delete, data: { confirm: 'Tikrai?' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <% @my_vehicles.each do |vehicle| %>
+      <%= link_to vehicle do %>
+        <div class="vehicles-list">
+          <div class="vehicles-list-primary-image">
+            <% vehicle.images.each do |image| %>
+              <% if image[:primary] %>
+                <%= cl_image_tag(image.image.thumb, class: "img-fluid") %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="vehicles-list-body">
+            <div class="card-body">
+              <div class="vehicle-list-item-title-container">
+                <div class="vehicle-list-item-title">
+                  <%= vehicle.manufacturer %> <%= vehicle.model %>
+                </div>
+
+                <div class="vehicle-list-item-total-km">
+                  <%= km_converter_helper(vehicle.total_km) %>km
+                </div>
+              </div>
+
+              <div class="vehicle-list-body">
+                <ul class="vehicle-list-body-cities">
+                  <li>
+                    <div class="vehicle-list-body-title">
+                      Miestai:
+                    </div>
+                  </li>
+
+                cities
+                </ul>
+
+                <ul class="vehicle-list-body-elderships">
+                  <li>
+                    <div class="vehicle-list-body-title">
+                      Vietovės:
+                    </div>
+                  </li>
+
+                  elderships
+                </ul>
+              </div>
+
+              <div class="vehicle-list-footer">
+                <ul class="vehicle-footer-info">
+                  <li>
+                    Kaina: €<%= vehicle.km_price %>/km
+                  </li>
+
+                  <li>
+                    Matomas: <%= vehicle.published ? "Taip" : "Ne" %>
+                  </li>
+                </ul>
+
+                <ul class="vehicle-footer-actions">
+                  <li>
+                    <%= link_to 'Redaguoti', edit_vehicle_path(vehicle) %>
+                  </li>
+
+                  <li>
+                    <%= link_to 'Trinti', vehicle, method: :delete, data: { confirm: 'Tikrai?' } %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
-</div>
+</section>
+
+<section>
+  <div class="section-container">
+    <%= will_paginate @my_vehicles, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, list_classes: %w(pagination justify-content-center) %>
+  </div>
+</section>

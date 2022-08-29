@@ -28,7 +28,7 @@
 
   <div class="vehicle-field">
     <%= form.label :year, "Pagaminimo metai*", for: "yearSelectGrid", class: "form-label" %>
-    <%= form.select :year, options_for_select(Date.today.year.downto(2010)), {}, {class: "form-select", id: "yearSelectGrid"} %>
+    <%= form.select :year, options_for_select(Date.today.year.downto(2005)), {}, {class: "form-select", id: "yearSelectGrid"} %>
   </div>
 
   <div class="vehicle-field">

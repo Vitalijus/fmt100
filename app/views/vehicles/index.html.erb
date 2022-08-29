@@ -60,7 +60,7 @@
           <div class="vehicles-list-primary-image">
             <% vehicle.images.each do |image| %>
               <% if image[:primary] %>
-                <%= image_tag("https://res.cloudinary.com/dhgsrpwf7/image/upload/c_fill,h_129,w_180/v1618681343/vehicle_image/Vitalijus%20Desukas%20hfg667.jpg", class: "img-fluid", alt: "...") %>
+                <%= cl_image_tag(image.image.thumb, class: "img-fluid") %>
               <% end %>
             <% end %>
           </div>
@@ -70,11 +70,6 @@
               <div class="vehicle-list-item-title-container">
                 <div class="vehicle-list-item-title">
                   <%= vehicle.manufacturer %> <%= vehicle.model %>
-
-                  <!-- <div class="vehicle-list-item-subtitle">
-                    <%= vehicle.year %> metų <%= vehicle.color %> <%= vehicle.body_style %>
-                     €<%= vehicle.km_price %>
-                  </div> -->
                 </div>
 
                 <div class="vehicle-list-item-total-km">

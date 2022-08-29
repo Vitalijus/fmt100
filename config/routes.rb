@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   # GQL playground http://localhost:3000/graphiql
   if Rails.env.development? || Rails.env.production?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "graphql#execute"

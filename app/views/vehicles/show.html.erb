@@ -6,7 +6,7 @@
           <div class="carousel-inner">
             <% @vehicle.images.each do |image| %>
               <div class="carousel-item <%= 'active' if image == @vehicle.images[0] %>">
-                <%= image_tag(image.image, class: "d-block w-100", alt: "...") %>
+                <%= cl_image_tag(image.image.show_cover, class: "img-fluid") %>
               </div>
             <% end %>
           </div>

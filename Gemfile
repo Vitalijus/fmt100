@@ -48,6 +48,10 @@ gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
 gem 'sidekiq-limit_fetch'
 
+# Rails admin
+gem 'activeadmin'
+# Image uploader
+gem 'carrierwave'
 # cloudinary image
 gem 'cloudinary'
 

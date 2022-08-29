@@ -50,10 +50,10 @@
 
 .vehicles-list-primary-image {
   width: 180px;
+  height: 130px;
   display: inline-block;
   vertical-align: top;
   margin-right: -4px;
-  // border: 1px solid red;
 
   // @include mobile {
   //   width: 100%;
@@ -96,9 +96,8 @@
   margin-right: -4px;
   vertical-align: middle;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
   text-transform: uppercase;
-  // border: 1px solid red;
 }
 
 .vehicle-list-item-total-km {
@@ -109,24 +108,14 @@
   margin-right: -4px;
   font-size: 16px;
   color: #545f7c;
-  font-weight: 500;
-  // border: 1px solid red;
+  font-weight: 300;
 }
 
-// .vehicle-list-item-subtitle {
-//   font-size: 14px;
-//   color: #989fb0;
-//   margin-top: -3px;
-//   // border: 1px solid red;
-// }
-
 .vehicle-list-body {
-  // border: 1px solid red;
 }
 
 ul.vehicle-list-body-cities,
 ul.vehicle-list-body-elderships {
-  // border: 1px solid red;
   margin-bottom: -3px;
 }
 
@@ -134,24 +123,18 @@ ul.vehicle-list-body-cities li,
 ul.vehicle-list-body-elderships li {
   display: inline-block;
   font-size: 14px;
-  // padding: 0 20px 0 20px;
   margin-right: 20px;
-  // margin-bottom: -30px;
-  // border: 1px solid red;
+  font-weight: 300;
 }
 
 .vehicle-list-body-title {
   width: 60px;
-  font-weight: 500;
-  // border: 1px solid green;
 }
 
 .vehicle-list-footer {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 300;
   margin-top: 7px;
-  // color: #cccccc;
-  // border: 1px solid red;
 }
 
 /* show.htm.erb */
@@ -186,6 +169,11 @@ ul.vehicle-list-body-elderships li {
   //      width: 100%;
   //      margin: 10px 0 0 0;
   //   }
+}
+
+.carousel-inner {
+  width: 100%;
+  height: 400px;
 }
 
 .vehicle-body {
@@ -302,4 +290,42 @@ ul.vehicle-places-header {
 
 .vehicle-field {
   margin-bottom: 10px;
+  // border: 1px solid red;
+}
+
+/* my_vehicles.html.erb */
+
+.my-vehicles-header {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 300;
+  padding: 20px;
+  text-align: center;
+  background: white;
+  margin-bottom: 20px;
+
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+ul.vehicle-footer-info {
+  width: calc(100% - 200px);
+  display: inline-block;
+}
+
+ul.vehicle-footer-info li {
+  display: inline-block;
+  padding-right: 10px;
+  // border: 1px solid red;
+}
+
+ul.vehicle-footer-actions {
+  width: 190px;
+  display: inline-block;
+  text-align: right;
+}
+
+ul.vehicle-footer-actions li {
+  display: inline-block;
 }

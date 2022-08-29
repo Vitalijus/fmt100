@@ -14,6 +14,7 @@ class Vehicle < ApplicationRecord
 
   private
 
+  # TO DO Flexible pricing
   def vehicle_km_price
     self.update(km_price: 0.02)
   end
