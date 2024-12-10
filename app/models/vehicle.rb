@@ -14,9 +14,7 @@ class Vehicle < ApplicationRecord
 
   # Ransack needs Vehicle attributes explicitly allowlisted
   def self.ransackable_attributes(auth_object = nil)
-    ["ad_duration", "ad_size", "body_style", "category", "cities", "city", "color", "created_at", "elderships", "id",
-      "km_price", "last_four_weeks_km", "manufacturer", "model", "percentage", "plate_number", "published",
-      "total_km", "tracker_imei", "updated_at", "user_id", "year"]
+    ["body_style", "city"]
   end
 
   private
