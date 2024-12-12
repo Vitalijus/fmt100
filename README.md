@@ -3,7 +3,7 @@
 
 ## Getting Started
 
-These instructions will get you a copy of the project up.
+These.
 
 # Prerequisites
 
