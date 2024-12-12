@@ -36,5 +36,8 @@ module Fmt100
     config.generators.system_tests = nil
 
     config.assets.initialize_on_precompile = false
+
+    # Add this to config/application.rb to stop any css compressor
+    config.assets.css_compressor = nil
   end
 end
